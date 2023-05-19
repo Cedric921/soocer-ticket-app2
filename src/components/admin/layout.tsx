@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import React from 'react';
 import fr from 'antd/locale/fr_FR';
+import Asidebar from './Asidebar';
 
 interface ILayout {
 	children: React.ReactNode;
@@ -19,8 +20,8 @@ const layout = ({ children }: ILayout) => {
 			locale={fr}
 		>
 			<div className='w-full h-screen max-h-screen flex '>
-				<aside className='w-1/6 max-w-[300px] bg-slate-50 shadow-md'>
-					aside
+				<aside className='w-1/6 max-w-[300px] bg-slate-50 shadow-md p-2'>
+					<Asidebar />
 				</aside>
 				<main className='w-full'>
 					<header className='w-full h-20 bg-primary-600 text-white p-4'></header>
