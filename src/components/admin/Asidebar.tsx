@@ -12,22 +12,22 @@ const links = [
 	{
 		label: 'Competitions',
 		icon: <FaPlaystation />,
-		link: '/compet',
+		link: '/admin/compet',
 	},
 	{
 		label: 'Rencontres',
 		icon: <FaPlayCircle />,
-		link: '/games',
+		link: '/admin/games',
 	},
 	{
 		label: 'Equipes',
 		icon: <AiOutlineTeam />,
-		link: '/teams',
+		link: '/admin/teams',
 	},
 	{
 		label: 'Utilisateurs',
 		icon: <AiFillDashboard />,
-		link: '/users',
+		link: '/admin/users',
 	},
 ];
 const Asidebar = () => {
@@ -42,7 +42,7 @@ const Asidebar = () => {
 			<div className='my-4'>
 				{links.map((link, i) => (
 					<Link key={i} href={link.link}>
-						<div className='flex gap-2 p-2 items-center rounded duration-1000 text-gray-700 hover:text-white hover:bg-primary-600'>
+						<div className='flex gap-2 p-2 items-center rounded duration-1000 text-gray-700 hover:text-white hover:bg-black/60'>
 							<span className='text-xl '>{link.icon}</span>
 							{link.label}
 						</div>

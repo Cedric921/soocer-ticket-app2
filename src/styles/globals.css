@@ -7,3 +7,11 @@
 * {
 	font-family: 'Raleway', sans-serif;
 }
+
+::-webkit-scrollbar {
+	@apply bg-black/30 w-2;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply rounded-md bg-black/70;
+}
