@@ -10,10 +10,10 @@ const PageHeader = ({
 	title: string;
 	sub: string;
 	showCreate?: boolean;
-	handleClick?: () => {};
+	handleClick?: () => void;
 }) => {
 	return (
-		<div className='w-full flex justify-between items-center py-4'>
+		<div className='w-full flex justify-between items-center p-4'>
 			<div>
 				<h3 className='text-2xl lg:text-3xl font-bold'>{title}</h3>
 				<p>{sub}</p>
