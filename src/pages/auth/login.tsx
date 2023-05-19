@@ -30,7 +30,7 @@ const Login = () => {
 			<div
 				className={`w-full h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-blue-300 relative text-white/70`}
 			>
-				<div className='w-1/2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md'>
+				<div className='w-full m-2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md'>
 					<span className='text-white/50'>Goal go</span>
 					<h2 className='text-3xl text-white/70 font-bold'>Connexion</h2>
 					<p className='text-xs text-white/50'>

@@ -12,7 +12,7 @@ interface ICompetiton {
 
 const CompetCard = ({ compet }: ICompetiton) => {
 	return (
-		<div className='border hover:border-black hover:bg-black/10 duration-1000 p-4 rounded-lg'>
+		<div className='border bg-white hover:border-black hover:bg-black/10 duration-1000 p-4 rounded-lg'>
 			<h2 className='text-2xl font-semibold'>{compet.title}</h2>
 			<p className='text-justify text-black/80 py-4'>{compet.description}</p>
 			<Link href={`/admin/compet/${compet.id}`}>

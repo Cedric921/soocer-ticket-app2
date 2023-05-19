@@ -2,8 +2,13 @@ import { Dropdown } from 'antd';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FaUserAlt } from 'react-icons/fa';
+import { FiAlignLeft } from 'react-icons/fi';
 
-const Header = () => {
+const Header = ({
+	setShowAside,
+}: {
+	setShowAside: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const router = useRouter();
 	const items = [
 		{
@@ -18,7 +23,14 @@ const Header = () => {
 	];
 	return (
 		<header className='w-full h-16 bg-black text-white p-4n flex justify-between'>
-			<div></div>
+			<div className='ml-4'>
+				<button
+					className='text-2xl py-3'
+					onClick={() => setShowAside((prev) => !prev)}
+				>
+					<FiAlignLeft />
+				</button>
+			</div>
 			<div className='p-2'>
 				<>
 					<Dropdown

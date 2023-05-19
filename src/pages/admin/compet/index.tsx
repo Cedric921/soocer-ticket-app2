@@ -112,7 +112,7 @@ const Index = () => {
 							Designation
 						</label>
 						<Input
-							className='bg-slate-300'
+							className='bg-slate-100'
 							type='text'
 							name='title'
 							id='title'
@@ -122,16 +122,16 @@ const Index = () => {
 						/>
 					</div>
 					<div className='flex flex-col py-2'>
-						<label htmlFor='password' className='text-sm text-black/60'>
-							Mot de passe
+						<label htmlFor='description' className='text-sm text-black/60'>
+							Description
 						</label>
-						<Input
-							className='bg-slate-300'
-							type='password'
-							name='password'
-							id='password'
+						<Input.TextArea
+							className='bg-slate-100'
+							name='description'
+							id='description'
 							size='large'
-							// value={userInput.password}
+
+							// value={userInput.description}
 							// onChange={handleChangeUserInput}
 						/>
 					</div>
