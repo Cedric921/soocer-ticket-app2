@@ -33,7 +33,7 @@ const CreateUserForm = ({
 			<h1 className='text-5xl md:text-4xl font-bold'>
 				{!isEdit ? 'Ajouter un utilisateur' : 'Modifier informations'}
 			</h1>
-			<form className='text-sm my-4 text-black/80'>
+			<form className='text-sm my-4 mt-3 text-black/80'>
 				<div className='flex flex-col py-2'>
 					<label htmlFor='title' className='text-sm text-black/80'>
 						Noms

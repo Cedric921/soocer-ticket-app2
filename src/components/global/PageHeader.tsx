@@ -13,7 +13,7 @@ const PageHeader = ({
 	handleClick?: () => void;
 }) => {
 	return (
-		<div className='w-full flex justify-between items-center p-4'>
+		<div className='w-full flex justify-between items-center p-2 px-4'>
 			<div>
 				<h3 className='text-2xl lg:text-3xl font-bold'>{title}</h3>
 				<p>{sub}</p>
