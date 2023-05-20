@@ -30,6 +30,30 @@ const users = [
 		email: 'jos@gmail.com',
 		tel: '6635353',
 	},
+	{
+		id: '1',
+		names: 'cedric karungu',
+		email: 'cedric@gmail.com',
+		tel: '255343434',
+	},
+	{
+		id: '2',
+		names: 'Gloire Mutaliko',
+		email: 'gloire@gmail.com',
+		tel: '6635353',
+	},
+	{
+		id: '3',
+		names: 'Jonas Nasibu',
+		email: 'jonas@gmail.com',
+		tel: '988484833',
+	},
+	{
+		id: '4',
+		names: 'Josue Makuta',
+		email: 'jos@gmail.com',
+		tel: '6635353',
+	},
 ];
 
 const Index = () => {
@@ -57,8 +81,8 @@ const Index = () => {
 				showCreate={!showAdd}
 				handleClick={handleShowUser}
 			/>
-			<div className='flex flex-wrap-reverse '>
-				<div className='w-full md:w-2/3 p-4'>
+			<div className='flex flex-wrap-reverse items-end'>
+				<div className='w-full  md:w-2/3 p-4 '>
 					<h4 className='text-2xl font-semibold px-2'>List des utilisateurs</h4>
 					<div className='bg-slate-100 rounded-lg p-2 '>
 						<div className='flex font-semibold justify-between py-4'>
@@ -104,7 +128,7 @@ const Index = () => {
 						))}
 					</div>
 				</div>
-				<div className='w-full md:w-1/3 p-4 duration-1000'>
+				<div className='w-full md:fixed right-5 md:w-[28%] p-4 duration-1000'>
 					{showAdd ? (
 						<CreateUserForm
 							handleShow={handleShowEdit}
