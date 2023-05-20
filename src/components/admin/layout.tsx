@@ -51,8 +51,14 @@ const Layout = ({ children }: ILayout) => {
 				</aside>
 				<main className={`w-full ${showAside ? '' : 'max-w-screen'}`}>
 					<Header setShowAside={setShowAside} />
-					<div className='w-full p-4 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto'>
-						<div className='w-full min-h-full bg-slate-100 shadow-[0px_20px_20px_10px_#00000024] rounded-xl p-4'>
+					<div className='w-full p-0 h-[calc(100vh-4rem)] overflow-x-hidden overflow-y-auto'>
+						<div
+							className='
+						w-full min-h-full bg-slate-100
+						shadow-[0px_20px_20px_10px_#00000024] 
+						 p-4
+						'
+						>
 							{children}
 						</div>
 					</div>
