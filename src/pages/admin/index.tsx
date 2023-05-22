@@ -69,7 +69,7 @@ const Dashboard = () => {
 									<p className='text-center text-xs text-black/50'>
 										{games[0].team2.town}
 									</p>
-									<div className='bg-black rounded-xl text-white text-center mx-auto absolute bottom-2 left-2 right-2'>
+									<div className='bg-black rounded-b-xl text-white text-center mx-auto absolute bottom-0 left-0 right-0'>
 										<h4 className='text-center pt-2 '>{'Cedric karungu'}</h4>
 										<span className='text-xl font-bold'>253</span>
 									</div>
