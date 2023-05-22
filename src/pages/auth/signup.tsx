@@ -1,9 +1,11 @@
 import { Button, ConfigProvider, Divider, Input } from 'antd';
 import fr from 'antd/locale/fr_FR';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const Signup = () => {
+	const router = useRouter();
 	const [userInput, setUserInput] = React.useState({
 		email: '',
 		password: '',
@@ -15,12 +17,13 @@ const Signup = () => {
 	const handleSignup = (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log(userInput);
+		router.replace('/admin');
 	};
 	return (
 		<ConfigProvider
 			theme={{
 				token: {
-					colorPrimary: '#09899a',
+					colorPrimary: '#000',
 					fontFamily: '',
 					colorText: '#494949',
 				},
@@ -69,11 +72,12 @@ const Signup = () => {
 						</div>
 						<Button
 							// className='bg-primary-700 w-full mt-3 text-white'
+							htmlType='submit'
 							size='large'
 							type='primary'
-							className='my-3 bg-primary-800 text-white font-medium flex justify-center items-center gap-2 border w-full py-[10px] rounded-lg'
+							className='my-3 bg-black/80 text-white font-medium flex justify-center items-center gap-2 border w-full py-[10px] rounded-lg'
 						>
-							Connexion
+							Créer le compte
 						</Button>
 					</form>
 					<p className='text-sm text-end text-white pb-2 underline'>
@@ -85,7 +89,7 @@ const Signup = () => {
 					</Divider>
 
 					<Button
-						className='w-full border-primary-600 bg-white/10 text-white'
+						className='w-full border-black/60 bg-white/10 text-white'
 						size='large'
 					>
 						Se connecter avec Google
@@ -94,7 +98,7 @@ const Signup = () => {
 						Avez-vous déjà un compte ?{' '}
 						<Link
 							href={'/auth/login'}
-							className='text-primary-800 hover:text-primary-700'
+							className='text-black/80 hover:text-black-70'
 						>
 							connecter vous
 						</Link>
