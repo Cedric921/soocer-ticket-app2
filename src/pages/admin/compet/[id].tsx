@@ -1,46 +1,8 @@
+import GameCard from '@/components/global/games/GameCard';
 import { Button } from 'antd';
 import Link from 'next/link';
 import React from 'react';
-
-const teams = [
-	{
-		id: '123',
-		title: 'TP Mazembe',
-		town: 'Lubumbashi',
-	},
-	{
-		id: '253',
-		title: 'OC Bukavu Dawa',
-		town: 'Bukavu',
-	},
-];
-
-const games = [
-	{
-		id: '2',
-		team1: { title: 'TP Mazembe', town: 'Lubumbashi' },
-		team2: { title: 'Oc Bukavu Dawa', town: 'Bukavu' },
-		date: new Date(),
-	},
-	{
-		id: '2',
-		team1: { title: 'TP Mazembe', town: 'Lubumbashi' },
-		team2: { title: 'Oc Bukavu Dawa', town: 'Bukavu' },
-		date: new Date(),
-	},
-	{
-		id: '2',
-		team1: { title: 'TP Mazembe', town: 'Lubumbashi' },
-		team2: { title: 'Oc Bukavu Dawa', town: 'Bukavu' },
-		date: new Date(),
-	},
-	{
-		id: '2',
-		team1: { title: 'TP Mazembe', town: 'Lubumbashi' },
-		team2: { title: 'Oc Bukavu Dawa', town: 'Bukavu' },
-		date: new Date(),
-	},
-];
+import { games, teams } from '@/data/fakes';
 
 const competition = () => {
 	return (
@@ -103,26 +65,7 @@ const competition = () => {
 				<div className='flex flex-wrap'>
 					{games.map((game, i) => (
 						<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
-							<div className='border rounded bg-white hover:bg-black/10 duration-1000 hover:border-black p-4 '>
-								<span className='bg-black text-white p-1 text-xs rounded'>
-									{game.date.toLocaleDateString()}
-								</span>
-								<h3 className='text-2xl text-center font-semibold  text-black/80'>
-									{game.team1?.title}
-								</h3>
-								<p className='text-center text-xs text-black/50'>
-									{game.team1.town}
-								</p>
-								<div className='w-12 h-12 rounded-full mx-auto bg-black/10 flex justify-center items-center my-4'>
-									<span>vs</span>
-								</div>
-								<h3 className='text-2xl text-center font-semibold text-black/80'>
-									{game.team2?.title}
-								</h3>
-								<p className='text-center text-xs text-black/50'>
-									{game.team2.town}
-								</p>
-							</div>
+							<GameCard game={game} />
 						</div>
 					))}
 				</div>
