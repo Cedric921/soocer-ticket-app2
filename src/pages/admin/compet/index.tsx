@@ -3,73 +3,7 @@ import CompetCard from '@/components/admin/compet/CompetCard';
 import PageHeader from '@/components/global/PageHeader';
 import { Button, Input, Modal } from 'antd';
 import React from 'react';
-
-const competList = [
-	{
-		id: '123',
-		title: 'champios league',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'Europa league',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'La liga BBVA',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'Provincial',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'league 1',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'league nationnale',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'champios league',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-	{
-		id: '123',
-		title: 'champios league',
-		description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem placeat
-				saepe officiis facilis laboriosam doloribus quisquam voluptatibus minima
-				cum vitae illo neque beatae aperiam, libero ipsum ducimus modi est
-				obcaecati!`,
-	},
-];
+import { competList } from '@/data/fakes';
 
 const Index = () => {
 	const [visibleAddCompet, setVisibleAddCompet] =

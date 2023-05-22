@@ -14,9 +14,9 @@ interface IGame {
 
 const GameCard = ({ game }: { game: IGame }) => {
 	return (
-		<div className='border rounded bg-white hover:bg-black/10 duration-1000 hover:border-black p-4 '>
-			<span className='bg-black text-white p-1 text-xs rounded'>
-				{game.date.toLocaleDateString()}
+		<div className='border rounded bg-white hover:bg-black/10 duration-1000 hover:border-black p-4 py-6 relative'>
+			<span className='bg-black text-white p-1 text-xs rounded absolute -top-2'>
+				{game.date.toLocaleString()}
 			</span>
 			<h3 className='text-2xl text-center font-semibold  text-black/80'>
 				{game.team1?.title}

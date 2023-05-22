@@ -79,7 +79,7 @@ const Dashboard = () => {
 					</div>
 				</div>
 				<div className='w-full lg:w-1/3 py-2 lg:pl-2'>
-					<div className='bg-black/80 hover:bg-black duration-1000 text-white rounded-xl p-6'>
+					<div className='bg-black/60 hover:bg-black duration-1000 text-white rounded-xl p-6'>
 						<h1 className='text-5xl md:text-4xl font-bold'>
 							Le moyen le plus facile de suivre les reservations des rencontres
 						</h1>

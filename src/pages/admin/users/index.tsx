@@ -2,64 +2,20 @@ import CreateUserForm from '@/components/admin/user/UserForm';
 import DetailsUserCard from '@/components/admin/user/DetailsUserCard';
 import PageHeader from '@/components/global/PageHeader';
 import React from 'react';
-import { Table } from 'antd';
 import Head from 'next/head';
+import { users } from '@/data/fakes';
 
-const users = [
-	{
-		id: '1',
-		names: 'cedric karungu',
-		email: 'cedric@gmail.com',
-		tel: '255343434',
-	},
-	{
-		id: '2',
-		names: 'Gloire Mutaliko',
-		email: 'gloire@gmail.com',
-		tel: '6635353',
-	},
-	{
-		id: '3',
-		names: 'Jonas Nasibu',
-		email: 'jonas@gmail.com',
-		tel: '988484833',
-	},
-	{
-		id: '4',
-		names: 'Josue Makuta',
-		email: 'jos@gmail.com',
-		tel: '6635353',
-	},
-	{
-		id: '1',
-		names: 'cedric karungu',
-		email: 'cedric@gmail.com',
-		tel: '255343434',
-	},
-	{
-		id: '2',
-		names: 'Gloire Mutaliko',
-		email: 'gloire@gmail.com',
-		tel: '6635353',
-	},
-	{
-		id: '3',
-		names: 'Jonas Nasibu',
-		email: 'jonas@gmail.com',
-		tel: '988484833',
-	},
-	{
-		id: '4',
-		names: 'Josue Makuta',
-		email: 'jos@gmail.com',
-		tel: '6635353',
-	},
-];
+interface IUser {
+	id: string;
+	names: string;
+	email: string;
+	tel: string;
+}
 
 const Index = () => {
 	const [showAdd, setShowAdd] = React.useState<boolean>(true);
 	const [isEdit, setIsEdit] = React.useState<boolean>(false);
-	const [selectedUser, setSelectedUser] = React.useState(users[0]);
+	const [selectedUser, setSelectedUser] = React.useState<IUser | null>(null);
 
 	const handleShowUser = () => {
 		setShowAdd((prev) => !prev);
@@ -138,7 +94,7 @@ const Index = () => {
 					) : (
 						<DetailsUserCard
 							handleShowEdit={handleShowEdit}
-							user={selectedUser}
+							user={selectedUser!}
 						/>
 					)}
 				</div>
