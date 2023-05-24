@@ -38,8 +38,8 @@ const Index = () => {
 			<div className='flex flex-wrap-reverse items-end'>
 				<div className='w-full  md:w-2/3 p-4 '>
 					<h4 className='text-2xl font-semibold px-2'>List des utilisateurs</h4>
-					<div className='bg-slate-100 rounded-lg p-2 '>
-						<div className='flex font-bold justify-between bg-white py-4'>
+					<div className='bg-slate-100 rounded-lg p-2 overflow-x-auto'>
+						<div className='flex font-bold justify-between bg-white py-4 min-w-[40rem]'>
 							<div className='text-center w-12 flex items-center justify-center'>
 								<span>#</span>
 							</div>
@@ -58,7 +58,7 @@ const Index = () => {
 								<div
 									className={`flex ${
 										i % 2 !== 0 ? 'bg-white' : null
-									}  hover:bg-black/90 hover:text-white duration-1000 rounded justify-between py-4 cursor-pointer`}
+									}  hover:bg-black/70 min-w-[40rem] hover:text-white duration-1000 rounded justify-between py-4 cursor-pointer`}
 									onClick={() => {
 										setSelectedTeam(team);
 										setIsEdit(false);

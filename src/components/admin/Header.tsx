@@ -6,8 +6,12 @@ import { FiAlignLeft } from 'react-icons/fi';
 
 const Header = ({
 	setShowAside,
+	darkMode,
+	setDarkMode,
 }: {
 	setShowAside: React.Dispatch<React.SetStateAction<boolean>>;
+	setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+	darkMode: boolean;
 }) => {
 	const router = useRouter();
 	const items = [
@@ -20,9 +24,14 @@ const Header = ({
 			key: '/deconnect',
 			onClick: (e: any) => router.replace('/auth/login'),
 		},
+		{
+			label: darkMode ? 'Mode Claire' : 'Mode sombre',
+			key: '/theme',
+			onClick: (e: any) => setDarkMode((prev) => !prev),
+		},
 	];
 	return (
-		<header className='w-full h-16 bg-black text-white p-4n flex justify-between'>
+		<header className='w-full h-16 bg-black/70 dark:bg-black text-white p-4n flex justify-between'>
 			<div className='ml-4'>
 				<button
 					className='text-2xl py-3'

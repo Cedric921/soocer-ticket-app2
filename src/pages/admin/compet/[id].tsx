@@ -19,12 +19,10 @@ const competition = () => {
 				mollitia inventore necessitatibus similique a maiores voluptates
 				suscipit voluptas eaque.
 			</div>
-			{/* <div className='flex justify-between flex-wrap my-4'> */}
-			{/* <div className='w-full md:w-1/2'> */}
 			<div className='my-4 md:my-8'>
 				<h3 className='text-xl font-semibold'>Equpies de cette competition</h3>
-				<div className='bg-slate-100 rounded-lg py-2 '>
-					<div className='flex font-semibold justify-between py-4'>
+				<div className='bg-slate-100 rounded-lg py-2 overflow-x-auto'>
+					<div className='flex font-semibold justify-between py-4 min-w-[40rem]'>
 						<div className='text-center w-12 flex items-center justify-center'>
 							<span>#</span>
 						</div>
@@ -40,7 +38,7 @@ const competition = () => {
 							<div
 								className={`flex ${
 									i % 2 == 0 ? 'bg-white' : null
-								}  hover:bg-black/90 hover:text-white duration-1000 rounded justify-between py-4 cursor-pointer`}
+								}  hover:bg-black/90 min-w-[40rem] hover:text-white duration-1000 rounded justify-between py-4 cursor-pointer`}
 							>
 								<div className='text-center w-12 flex items-center justify-center'>
 									<span>{team?.id}</span>
@@ -56,8 +54,6 @@ const competition = () => {
 					))}
 				</div>
 			</div>
-			{/* </div> */}
-			{/* <div className='w-full md:w-1/2'> */}
 			<div className='my-4 md:my-8'>
 				<h3 className='text-xl font-semibold'>
 					Rencontres de cette competition
@@ -70,8 +66,6 @@ const competition = () => {
 					))}
 				</div>
 			</div>
-			{/* </div> */}
-			{/* </div> */}
 		</div>
 	);
 };

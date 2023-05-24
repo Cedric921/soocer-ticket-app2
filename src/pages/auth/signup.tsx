@@ -31,7 +31,7 @@ const Signup = () => {
 			locale={fr}
 		>
 			<div
-				className={`w-full h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-blue-300 relative text-white/70`}
+				className={`w-full h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80 relative text-white/70`}
 			>
 				<div className='w-1/2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md'>
 					<span className='text-white/50'>Goal go</span>
