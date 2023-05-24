@@ -33,17 +33,20 @@ const CreateTeamForm = ({
 		}
 	}, [isEdit, team]);
 	return (
-		<div className='bg-white  duration-1000 text-black rounded-xl p-6'>
-			<h1 className='text-5xl md:text-4xl font-bold'>
+		<div className='bg-white dark:bg-white/20  duration-1000 text-black rounded-xl p-6'>
+			<h1 className='text-5xl md:text-4xl font-bold dark:text-white/70'>
 				{!isEdit ? 'Ajouter une equipe' : 'Modifier informations'}
 			</h1>
-			<form className='text-sm my-4 mt-3 text-black/80'>
+			<form className='text-sm my-4 mt-3 text-black/80 dark:text-white/70'>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='title' className='text-sm text-black/80'>
+					<label
+						htmlFor='title'
+						className='text-sm text-black/80 dark:text-white/70'
+					>
 						Designation
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='text'
 						name='title'
 						id='title'
@@ -53,11 +56,14 @@ const CreateTeamForm = ({
 					/>
 				</div>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='town' className='text-sm text-black/80'>
+					<label
+						htmlFor='town'
+						className='text-sm text-black/80 dark:text-white/70'
+					>
 						Ville
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='text'
 						name='town'
 						id='town'
@@ -67,11 +73,14 @@ const CreateTeamForm = ({
 					/>
 				</div>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='sigle' className='text-sm text-black/80'>
+					<label
+						htmlFor='sigle'
+						className='text-sm text-black/80 dark:text-white/70'
+					>
 						Sigle
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='text'
 						name='sigle'
 						id='sigle'
@@ -82,7 +91,7 @@ const CreateTeamForm = ({
 				</div>
 			</form>
 			<Button
-				className='text-black/80 w-full border-black/50'
+				className='text-black/80 dark:text-white/70 w-full dark:bg-black/90  border-black/50'
 				size='large'
 				onClick={handleCreateTeam}
 			>

@@ -33,13 +33,16 @@ const Dashboard = () => {
 							<div className='w-1/2 h-full p-4'>
 								<h2 className='text-xl'>Verifer une reservation</h2>
 								<div className='w-full h-full flex flex-col justify-center'>
-									<label>Saisissez le code de la reservation</label>
+									<label htmlFor='search'>
+										Saisissez le code de la reservation
+									</label>
 									<Input
+										id='search'
 										name='search'
 										type='text'
 										size='large'
 										placeholder='2737477ryrhfh83948'
-										className='dark:bg-white/75'
+										className='dark:bg-white/75 dark:focus:ring-4 ring-black/80'
 									/>
 									<Button
 										className='bg-black/70 dark:border dark:border-black/70 text-white w-full my-4'

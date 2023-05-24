@@ -29,17 +29,20 @@ const CreateUserForm = ({
 		}
 	}, []);
 	return (
-		<div className='bg-white  duration-1000 text-black rounded-xl p-6'>
-			<h1 className='text-5xl md:text-4xl font-bold'>
+		<div className='bg-white dark:bg-white/20 duration-1000 text-black rounded-xl p-6'>
+			<h1 className='text-5xl md:text-4xl font-bold dark:text-white/70'>
 				{!isEdit ? 'Ajouter un utilisateur' : 'Modifier informations'}
 			</h1>
 			<form className='text-sm my-4 mt-3 text-black/80'>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='title' className='text-sm text-black/80'>
+					<label
+						htmlFor='title'
+						className='text-sm text-black/80  dark:text-white/70'
+					>
 						Noms
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='text'
 						name='names'
 						id='names'
@@ -49,11 +52,14 @@ const CreateUserForm = ({
 					/>
 				</div>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='email' className='text-sm text-black/80'>
+					<label
+						htmlFor='email'
+						className='text-sm text-black/80  dark:text-white/70'
+					>
 						Email
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='email'
 						name='email'
 						id='email'
@@ -63,11 +69,14 @@ const CreateUserForm = ({
 					/>
 				</div>
 				<div className='flex flex-col py-2'>
-					<label htmlFor='email' className='text-sm text-black/80'>
+					<label
+						htmlFor='email'
+						className='text-sm text-black/80  dark:text-white/70'
+					>
 						Numero de telephone
 					</label>
 					<Input
-						className='bg-white/80 text-black/80 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
 						type='tel'
 						name='tel'
 						id='tel'
@@ -78,7 +87,7 @@ const CreateUserForm = ({
 				</div>
 			</form>
 			<Button
-				className='text-black/80 w-full border-black/50'
+				className='text-black/80 dark:text-white/70 w-full dark:bg-black/90  border-black/50'
 				size='large'
 				onClick={handleCreateUser}
 			>

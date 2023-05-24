@@ -37,10 +37,13 @@ const Index = () => {
 				onCancel={handleShow}
 				onOk={handleCreate}
 				centered
+				className='dark:bg-black'
 				footer={[]}
 			>
 				<div>
-					<h3 className='text-lg font-semibold'>Enregistrer une competition</h3>
+					<h3 className='text-lg font-semibold '>
+						Enregistrer une competition
+					</h3>
 					<div className='flex flex-col py-2'>
 						<label htmlFor='title' className='text-sm text-black/60'>
 							Designation
