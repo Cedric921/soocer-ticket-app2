@@ -13,24 +13,24 @@ const Dashboard = () => {
 				<title>Goal Go - administration</title>
 			</Head>
 			<div className='cards flex flex-wrap'>
-				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-4'>
+				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card number={12} title='utilisateur' icon={<FaUserAlt />} />
 				</div>
-				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-4'>
+				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card number={23} title='equipes' icon={<FaUserFriends />} />
 				</div>
-				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-4'>
+				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card number={9} title='competitions' icon={<FaUserAlt />} />
 				</div>
-				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-4'>
+				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card number={21} title='rencontres' icon={<FaUserAlt />} />
 				</div>
 			</div>
 			<div className='flex flex-wrap-reverse p-4'>
 				<div className='w-full lg:w-2/3 py-2 lg:pr-2'>
 					<div className='h-full bg-white dark:bg-white/20 rounded-xl border-2 dark:border-black/50 dark:text-white/80 duration-1000 p-1'>
-						<div className='flex justify-between h-full'>
-							<div className='w-1/2 h-full p-4'>
+						<div className='flex justify-between flex-wrap h-full'>
+							<div className='w-full md:w-1/2 md:h-full p-4'>
 								<h2 className='text-xl'>Verifer une reservation</h2>
 								<div className='w-full h-full flex flex-col justify-center'>
 									<label htmlFor='search'>
@@ -52,7 +52,7 @@ const Dashboard = () => {
 									</Button>
 								</div>
 							</div>
-							<div className='w-1/2 p-2'>
+							<div className='w-full md:w-1/2 min-h-[20rem] p-2'>
 								<div className='rounded-2xl shadow-[0px_5px_10px_5px_#00000024] h-full border-black/70 dark:text-white/80 border-2 p-2 relative'>
 									<span className='bg-black/60 text-white p-1 text-xs rounded'>
 										{games[0].date.toLocaleDateString()}

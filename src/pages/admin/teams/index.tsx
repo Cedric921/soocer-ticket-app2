@@ -38,7 +38,7 @@ const Index = () => {
 			<div className='flex flex-wrap-reverse items-end'>
 				<div className='w-full  md:w-2/3 p-4 '>
 					<h4 className='text-2xl font-semibold px-2 dark:text-white/80'>
-						List des utilisateurs
+						List des equipes
 					</h4>
 					<div className='bg-slate-100 dark:bg-inherit rounded-lg p-2 overflow-x-auto'>
 						<div className='flex font-bold justify-between bg-white dark:bg-black/50 dark:text-white/70 py-4 min-w-[40rem]'>

@@ -24,7 +24,7 @@ const GameCard = ({ game }: { game: IGame }) => {
 			<p className='text-center text-xs text-black/50 dark:text-white/50'>
 				{game.team1.town}
 			</p>
-			<div className='w-12 h-12 rounded-full mx-auto bg-black/10 flex justify-center items-center my-4'>
+			<div className='w-12 h-12 rounded-full mx-auto bg-black/10 dark:bg-white/25 flex justify-center items-center my-4'>
 				<span>vs</span>
 			</div>
 			<h3 className='text-2xl text-center font-semibold text-black/80 dark:text-white/70'>
