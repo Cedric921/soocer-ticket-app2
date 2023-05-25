@@ -8,21 +8,25 @@ const competition = () => {
 	return (
 		<div className='p-4'>
 			<div className='w-full flex justify-between'>
-				<h1 className='text-2xl md:text-4xl font-semibold'>Champios League</h1>
+				<h1 className='text-2xl md:text-4xl font-semibold dark:text-white'>
+					Champios League
+				</h1>
 				<Link href='/admin/compet'>
 					<Button size='large'>Retour a la liste</Button>
 				</Link>
 			</div>
-			<div className='p-2 md:p-8 text-white duration-1000 bg-black/60 hover:bg-black rounded-lg my-4 md:my-8'>
+			<div className='p-2 md:p-8 text-white dark:text-white/80 duration-1000 bg-black/60 hover:bg-black rounded-lg my-4 md:my-8'>
 				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis
 				error quae itaque enim dolor dolorem, nemo est deleniti aperiam ad,
 				mollitia inventore necessitatibus similique a maiores voluptates
 				suscipit voluptas eaque.
 			</div>
 			<div className='my-4 md:my-8'>
-				<h3 className='text-xl font-semibold'>Equpies de cette competition</h3>
-				<div className='bg-slate-100 rounded-lg py-2 overflow-x-auto'>
-					<div className='flex font-semibold justify-between py-4 min-w-[40rem]'>
+				<h3 className='text-xl font-semibold dark:text-white/80'>
+					Equpies de cette competition
+				</h3>
+				<div className='bg-slate-100 dark:bg-inherit rounded-lg py-2 overflow-x-auto'>
+					<div className='flex font-semibold justify-between bg-white dark:bg-black/50 dark:text-white/70 py-4 min-w-[40rem]'>
 						<div className='text-center w-12 flex items-center justify-center'>
 							<span>#</span>
 						</div>
@@ -37,8 +41,8 @@ const competition = () => {
 						<>
 							<div
 								className={`flex ${
-									i % 2 == 0 ? 'bg-white' : null
-								}  hover:bg-black/90 min-w-[40rem] hover:text-white duration-1000 rounded justify-between py-4 cursor-pointer`}
+									i % 2 !== 0 ? 'bg-white dark:bg-black/50' : null
+								}  hover:bg-black/90 dark:hover:bg-white/40 min-w-[40rem] hover:text-white dark:text-white/70 duration-1000 rounded justify-between py-4 cursor-pointer`}
 							>
 								<div className='text-center w-12 flex items-center justify-center'>
 									<span>{team?.id}</span>

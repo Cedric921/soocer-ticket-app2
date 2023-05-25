@@ -3,9 +3,15 @@ import fr from 'antd/locale/fr_FR';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '@/app/auth/auth.service';
+import { AppDispatch, RootState } from '@/app/store';
 
 const Login = () => {
 	const router = useRouter();
+	const dispatch = useDispatch<AppDispatch>();
+	const { user, status } = useSelector((state: RootState) => state.auth);
 	const [userInput, setUserInput] = React.useState({
 		email: '',
 		password: '',
@@ -14,11 +20,20 @@ const Login = () => {
 	const handleChangeUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
-	const handleLogin = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log(userInput);
-		router.replace('/admin');
+
+	const handleGoogleLogin = async () => {
+		await signIn('google');
 	};
+
+	const handleLogin = async (e: React.FormEvent) => {
+		e.preventDefault();
+		dispatch(login(userInput));
+	};
+
+	React.useEffect(() => {
+		if (user) router.replace('/admin');
+	}, [user, router]);
+
 	return (
 		<ConfigProvider
 			theme={{
@@ -89,6 +104,7 @@ const Login = () => {
 					<Button
 						className='w-full border-black/60 bg-white/10 text-white'
 						size='large'
+						onClick={handleGoogleLogin}
 					>
 						Se connecter avec Google
 					</Button>

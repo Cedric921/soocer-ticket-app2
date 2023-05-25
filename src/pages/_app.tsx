@@ -1,16 +1,20 @@
 import '@/styles/globals.css';
-import { checkAdminRoute } from '@/utils/checkers';
 import Layout from '@/components/admin/layout';
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
+import { SessionProvider } from 'next-auth/react';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
+import ToastManager from '@/components/global/loaders/ToastManager';
 
 export default function App({ Component, pageProps }: AppProps) {
-	const router = useRouter();
-	if (checkAdminRoute(router.pathname))
-		return (
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-		);
-	return <Component {...pageProps} />;
+	return (
+		<Provider store={store}>
+			<SessionProvider session={pageProps.session}>
+				<Layout>
+					<Component {...pageProps} />
+					<ToastManager />
+				</Layout>
+			</SessionProvider>
+		</Provider>
+	);
 }

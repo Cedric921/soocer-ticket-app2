@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { FiAlignLeft } from 'react-icons/fi';
+import { useSession } from 'next-auth/react';
 
 const Header = ({
 	setShowAside,
@@ -14,6 +15,7 @@ const Header = ({
 	darkMode: boolean;
 }) => {
 	const router = useRouter();
+	const { data: session } = useSession();
 	const items = [
 		{
 			label: 'Compte',
@@ -49,7 +51,14 @@ const Header = ({
 						}}
 					>
 						<div className='w-12 h-12 duration-500 bg-white/20 hover:bg-white/30 flex justify-center items-center rounded-full cursor-pointer'>
-							<FaUserAlt />
+							{session ? (
+								<img
+									src={session.user?.image!}
+									className='object-cover rounded-full w-full h-full'
+								/>
+							) : (
+								<FaUserAlt />
+							)}
 						</div>
 					</Dropdown>
 				</>
