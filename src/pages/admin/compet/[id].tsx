@@ -2,10 +2,13 @@ import GameCard from '@/components/global/games/GameCard';
 import { Button } from 'antd';
 import Link from 'next/link';
 import React from 'react';
-import { games, teams } from '@/data/fakes';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 const Competition = ({ id }: { id: string }) => {
+	const { teams } = useSelector((state: RootState) => state.teams);
+	const { games } = useSelector((state: RootState) => state.games);
 	const router = useRouter();
 
 	return (
@@ -40,7 +43,7 @@ const Competition = ({ id }: { id: string }) => {
 							<span>Ville</span>
 						</div>
 					</div>
-					{teams.map((team, i) => (
+					{teams?.map((team, i) => (
 						<>
 							<div
 								className={`flex ${
@@ -66,7 +69,7 @@ const Competition = ({ id }: { id: string }) => {
 					Rencontres de cette competition
 				</h3>
 				<div className='flex flex-wrap'>
-					{games.map((game, i) => (
+					{games?.map((game: IGame, i) => (
 						<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
 							<GameCard game={game} />
 						</div>

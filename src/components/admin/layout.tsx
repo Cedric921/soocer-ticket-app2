@@ -30,6 +30,7 @@ const Layout = ({ children }: ILayout) => {
 		const isDark = JSON.parse(localStorage.getItem('theme')!);
 		setIsDarkMode(isDark ? true : false);
 	}, [isDarkMode]);
+
 	return (
 		<ConfigProvider
 			theme={{
