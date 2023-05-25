@@ -29,7 +29,10 @@ const Header = ({
 		{
 			label: darkMode ? 'Mode Claire' : 'Mode sombre',
 			key: '/theme',
-			onClick: (e: any) => setDarkMode((prev) => !prev),
+			onClick: (e: any) => {
+				setDarkMode((prev) => !prev);
+				localStorage.setItem('theme', JSON.stringify(!darkMode));
+			},
 		},
 	];
 	return (

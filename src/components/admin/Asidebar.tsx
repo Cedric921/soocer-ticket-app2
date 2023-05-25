@@ -47,7 +47,7 @@ const Asidebar = ({
 				<>
 					<div className='p-4 px-2 flex flex-col'>
 						<Link href={'/'} className='text-3xl font-bold text-primary-700'>
-							Goal Go
+							soccer-ticket
 						</Link>
 						<span>gooooli</span>
 					</div>

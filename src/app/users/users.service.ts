@@ -52,3 +52,28 @@ export const createUser = createAsyncThunk(
 		}
 	}
 );
+
+export const updateUser = createAsyncThunk(
+	'users/create',
+	async (dto: any, thunkAPI) => {
+		try {
+			const { auth } = thunkAPI.getState() as RootState;
+			const token =
+				auth.user?.token ||
+				JSON.parse(localStorage.getItem('soccer-user')!).token;
+
+			const config = {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			};
+
+			const res = await axios.put(`${USERS}/${dto.id}`, dto.data, config);
+			return res.data;
+		} catch (error: any) {
+			const message =
+				error.response?.data?.message || error?.message || error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);

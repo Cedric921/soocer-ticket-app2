@@ -36,8 +36,8 @@ const CreateUserForm = ({
 		}
 	}, []);
 	return (
-		<div className='bg-white dark:bg-white/20 duration-1000 text-black rounded-xl p-6'>
-			<h1 className='text-5xl md:text-4xl font-bold dark:text-white/70'>
+		<div className='bg-white dark:bg-black/80 duration-1000 text-black rounded-xl p-6'>
+			<h1 className='text-5xl md:text-4xl font-bold dark:text-white/90'>
 				{!isEdit ? 'Ajouter un utilisateur' : 'Modifier informations'}
 			</h1>
 			<form className='text-sm my-4 mt-3 text-black/80'>
@@ -49,7 +49,7 @@ const CreateUserForm = ({
 						Noms
 					</label>
 					<Input
-						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 border-black/10 dark:text-white dark:font-semibold dark:focus:ring-white dark:focus:ring-2'
 						type='text'
 						name='names'
 						id='names'
@@ -66,7 +66,7 @@ const CreateUserForm = ({
 						Email
 					</label>
 					<Input
-						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
+						className='bg-white/80 dark:bg-white/40 text-black/80 border-black/10 dark:text-white dark:font-semibold dark:focus:ring-white dark:focus:ring-2'
 						type='email'
 						name='email'
 						id='email'
@@ -83,10 +83,10 @@ const CreateUserForm = ({
 						Role
 					</label>
 					<Select
-						className='bg-slate-100'
+						className='bg-white/80  text-black/80 border-black/10 dark:text-white dark:font-semibold'
 						id='role'
 						size='large'
-						placeholder='Selectionner une equipe'
+						placeholder='Selectionner un role'
 						options={['ADMIN', 'USER'].map((team) => ({
 							value: team,
 							label: team,
@@ -100,7 +100,7 @@ const CreateUserForm = ({
 				</div>
 			</form>
 			<Button
-				className='text-black/80 dark:text-white/70 w-full dark:bg-black/90  border-black/50'
+				className='text-black/80 dark:text-white w-full dark:bg-black/90  border-black/50 dark:border-white'
 				size='large'
 				onClick={handleCreateUser}
 			>

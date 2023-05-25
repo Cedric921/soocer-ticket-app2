@@ -96,26 +96,36 @@ const Dashboard = () => {
 							</div>
 							<div className='w-full md:w-1/2 min-h-[20rem] p-2'>
 								<div className='rounded-2xl shadow-[0px_5px_10px_5px_#00000024] h-full border-black/70 dark:text-white/80 border-2 p-2 relative'>
-									<span className='bg-black/60 text-white p-1 text-xs rounded'>
-										{games[0]
-											? new Date(games[0]?.date)?.toLocaleDateString()
-											: null}
-									</span>
-									<h3 className='text-2xl text-center font-semibold  text-black/80 dark:text-white/80'>
-										{games[0]?.TeamOne?.title ?? '...'}
-									</h3>
-									<p className='text-center text-xs text-black/50 dark:text-white/50'>
-										{games[0]?.TeamOne?.town ?? '...'}
-									</p>
-									<div className='w-8 h-8 rounded-full mx-auto bg-black/10 flex justify-center items-center my-4'>
-										<span>vs</span>
-									</div>
-									<h3 className='text-2xl text-center font-semibold text-black/80 dark:text-white/80'>
-										{games[0]?.TeamTwo?.title ?? '...'}
-									</h3>
-									<p className='text-center text-xs text-black/50 dark:text-white/50'>
-										{games[0]?.TeamTwo?.town ?? '...'}
-									</p>
+									{games?.length! > 0 ? (
+										<>
+											<span className='bg-black/60 min-w-[20rem] text-white p-1 text-xs rounded'>
+												{games[0]
+													? new Date(games[0]?.date)?.toLocaleDateString()
+													: null}
+											</span>
+											<h3 className='text-2xl text-center font-semibold  text-black/80 dark:text-white/80'>
+												{games[0]?.TeamOne?.title ?? '...'}
+											</h3>
+											<p className='text-center text-xs text-black/50 dark:text-white/50'>
+												{games[0]?.TeamOne?.town ?? '...'}
+											</p>
+											<div className='w-8 h-8 rounded-full mx-auto bg-black/10 flex justify-center items-center my-4'>
+												<span>vs</span>
+											</div>
+											<h3 className='text-2xl text-center font-semibold text-black/80 dark:text-white/80'>
+												{games[0]?.TeamTwo?.title ?? '...'}
+											</h3>
+											<p className='text-center text-xs text-black/50 dark:text-white/50'>
+												{games[0]?.TeamTwo?.town ?? '...'}
+											</p>
+										</>
+									) : (
+										<div className='w-full h-full flex text-center justify-center items-center'>
+											<p className='text-lg'>
+												Enterer un code <br /> pour voir la reservation
+											</p>
+										</div>
+									)}
 									<div className='bg-black/70 rounded-b-xl text-white text-center mx-auto absolute bottom-0 left-0 right-0'>
 										<h4 className='text-center pt-2 '>{'Cedric karungu'}</h4>
 										<span className='text-xl font-bold'>253</span>
@@ -143,11 +153,13 @@ const Dashboard = () => {
 					Rencontres planifiées
 				</h3>
 				<div className='flex flex-wrap'>
-					{games.map((game, i) => (
-						<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
-							<GameCard game={game} />
-						</div>
-					))}
+					{games
+						?.filter((el) => new Date(el.date) >= new Date())
+						.map((game, i) => (
+							<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
+								<GameCard game={game} />
+							</div>
+						))}
 				</div>
 			</div>
 		</>

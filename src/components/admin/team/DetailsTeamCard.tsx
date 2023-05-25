@@ -25,36 +25,44 @@ const DetailsTeamCard = ({
 		handleShowEdit();
 	};
 	return (
-		<div className='bg-white  duration-1000 text-black rounded-xl p-6'>
-			<h1 className='text-2xl md:text-4xl font-bold'>Détails utilisateur</h1>
+		<div className='bg-white dark:bg-black/80 duration-1000 text-black rounded-xl p-6'>
+			<h1 className='text-2xl md:text-4xl font-bold dark:text-white/90'>
+				Détails utilisateur
+			</h1>
 			<div className='my-4 flex items-center gap-2'>
-				<div className='w-12 y-12 bg-black/10 hover:bg-black/20 duration-1000 p-4 rounded'>
-					<FaAngular />
+				<div className='w-12 y-12 bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/40 duration-1000 p-4 rounded'>
+					<FaAngular className='dark:text-white' />
 				</div>
 				<div>
-					<label className='font-light text-sm'>Designation</label>
-					<p className='font-semibold'>{team?.title}</p>
+					<label className='font-light text-sm dark:text-white/60'>
+						Designation
+					</label>
+					<p className='font-semibold dark:text-white/90'>{team?.title}</p>
 				</div>
 			</div>
 			<div className='my-4 flex items-center gap-2'>
-				<div className='w-12 y-12 bg-black/10 hover:bg-black/20 duration-1000 p-4 rounded'>
-					<FaGlobeAfrica />
+				<div className='w-12 y-12 bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/40 duration-1000 p-4 rounded'>
+					<FaGlobeAfrica className='dark:text-white' />
 				</div>
 				<div>
-					<label className='font-light text-sm'>Ville</label>
-					<p className='font-semibold'>{team?.town}</p>
+					<label className='font-light text-sm dark:text-white/60'>Ville</label>
+					<p className='font-semibold dark:text-white/90'>{team?.town}</p>
 				</div>
 			</div>
 			<div className='my-4 flex items-center gap-2'>
-				<div className='w-12 y-12 bg-black/10 hover:bg-black/20 duration-1000 p-4 rounded'>
-					<FaAt />
+				<div className='w-12 y-12 bg-black/10 dark:bg-white/20 hover:bg-black/20 dark:hover:bg-white/40 duration-1000 p-4 rounded'>
+					<FaAt className='dark:text-white' />
 				</div>
 				<div>
-					<label className='font-light text-sm'>Sigle</label>
-					<p className='font-semibold'>{team?.sigle}</p>
+					<label className='font-light text-sm dark:text-white/60'>Sigle</label>
+					<p className='font-semibold dark:text-white/90'>{team?.sigle}</p>
 				</div>
 			</div>
-			<Button size='large' className='w-full' onClick={showEdit}>
+			<Button
+				size='large'
+				className='w-full dark:text-white'
+				onClick={showEdit}
+			>
 				Modifier
 			</Button>
 		</div>

@@ -20,12 +20,16 @@ const Layout = ({ children }: ILayout) => {
 	React.useEffect(() => {
 		const onResize = () => {
 			setOnMobile(window.innerWidth <= 900);
-			// setShowAside(window.innerWidth > 900);
 		};
 		onResize();
 		window.addEventListener('resize', onResize);
 		return () => window.removeEventListener('resize', onResize);
 	}, []);
+
+	React.useEffect(() => {
+		const isDark = JSON.parse(localStorage.getItem('theme')!);
+		setIsDarkMode(isDark ? true : false);
+	}, [isDarkMode]);
 	return (
 		<ConfigProvider
 			theme={{
