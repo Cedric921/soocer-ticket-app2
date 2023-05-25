@@ -12,7 +12,7 @@ const Competition = ({ id }: { id: string }) => {
 		<div className='p-4'>
 			<div className='w-full flex justify-between'>
 				<h1 className='text-2xl md:text-4xl font-semibold dark:text-white'>
-					Champios League {id}
+					Champios League
 				</h1>
 				<Link href='/admin/compet'>
 					<Button size='large'>Retour a la liste</Button>

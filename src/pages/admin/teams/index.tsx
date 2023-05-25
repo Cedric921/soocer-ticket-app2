@@ -9,13 +9,6 @@ import { teams } from '@/data/fakes';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-interface ITeam {
-	id: string;
-	title: string;
-	town: string;
-	sigle: string;
-}
-
 const Index = () => {
 	const [showAdd, setShowAdd] = React.useState<boolean>(true);
 	const [isEdit, setIsEdit] = React.useState<boolean>(false);

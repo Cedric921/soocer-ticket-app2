@@ -1,5 +1,5 @@
 import { AppDispatch } from '@/app/store';
-import { createTeam } from '@/app/teams/teams.service';
+import { createTeam, updateTeam } from '@/app/teams/teams.service';
 import { Button, Input } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,11 +11,7 @@ const CreateTeamForm = ({
 }: {
 	handleShow: () => void;
 	isEdit?: boolean;
-	team?: {
-		title: string;
-		town: string;
-		sigle: string;
-	};
+	team?: ITeam;
 }) => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [teamInput, setTeamInput] = React.useState({
@@ -50,7 +46,9 @@ const CreateTeamForm = ({
 	const handleCreateTeam = () => {
 		console.log(isEdit, teamInput);
 		if (validate()) {
-			!isEdit ? dispatch(createTeam(teamInput)) : null;
+			!isEdit
+				? dispatch(createTeam(teamInput))
+				: dispatch(updateTeam({ id: team?.id! }));
 		}
 		setTeamInput({ sigle: '', title: '', town: '' });
 	};

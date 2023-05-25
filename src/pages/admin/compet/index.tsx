@@ -6,7 +6,7 @@ import React from 'react';
 import { competList } from '@/data/fakes';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
-import { getCompets } from '@/app/compet/compets.service';
+import { createCompet, getCompets } from '@/app/compet/compets.service';
 
 const Index = () => {
 	const [visibleAddCompet, setVisibleAddCompet] =
@@ -14,12 +14,25 @@ const Index = () => {
 	const { competitons } = useSelector((state: RootState) => state.competitions);
 	const dispatch = useDispatch<AppDispatch>();
 
+	const [competInput, setCompetInput] = React.useState({
+		title: '',
+		description: '',
+	});
+
 	const handleShow = () => {
 		setVisibleAddCompet((prev) => !prev);
 	};
 
+	const handleChangeForm = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		setCompetInput((p) => ({ ...p, [e.target.name]: e.target.value }));
+	};
+
 	const handleCreate = () => {
-		console.log('hello world');
+		if (competInput.title.length > 5 && competInput.description.length > 5) {
+			dispatch(createCompet(competInput));
+		}
 		handleShow();
 	};
 
@@ -34,9 +47,9 @@ const Index = () => {
 				showCreate
 				handleClick={handleShow}
 			/>
-			<div className='flex flex-wrap'>
+			<div className='flex flex-wrap items-stretch'>
 				{competitons?.map((el, i) => (
-					<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
+					<div key={i} className='w-full  md:w-1/3 2xl:w-1/4 p-4'>
 						<CompetCard compet={el} />
 					</div>
 				))}
@@ -63,8 +76,8 @@ const Index = () => {
 							name='title'
 							id='title'
 							size='large'
-							// value={userInput.email}
-							// onChange={handleChangeUserInput}
+							value={competInput.title}
+							onChange={handleChangeForm}
 						/>
 					</div>
 					<div className='flex flex-col py-2'>
@@ -76,9 +89,8 @@ const Index = () => {
 							name='description'
 							id='description'
 							size='large'
-
-							// value={userInput.description}
-							// onChange={handleChangeUserInput}
+							value={competInput.description}
+							onChange={handleChangeForm}
 						/>
 					</div>
 				</div>

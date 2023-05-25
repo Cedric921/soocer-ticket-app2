@@ -35,7 +35,7 @@ const gameSlice = createSlice({
 				state.status.isSuccess = true;
 				state.status.isError = false;
 				state.games = action.payload.data;
-				state.message = 'donnees chargées';
+				state.message = '';
 			})
 			.addCase(getGames.rejected, (state, action) => {
 				state.status.isLoading = false;
