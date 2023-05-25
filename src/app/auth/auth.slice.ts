@@ -41,7 +41,7 @@ const authSlice = createSlice({
 				state.status.isSuccess = true;
 				state.status.isError = false;
 				state.user = action.payload.data;
-				state.message = action.payload.message;
+				state.message = 'connecté';
 				localStorage.setItem('soccer-user', JSON.stringify(state.user));
 			})
 			.addCase(login.rejected, (state, action) => {

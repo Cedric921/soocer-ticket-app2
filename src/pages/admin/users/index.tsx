@@ -4,8 +4,9 @@ import PageHeader from '@/components/global/PageHeader';
 import React from 'react';
 import Head from 'next/head';
 // import { users } from '@/data/fakes';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
+import { getUsers } from '@/app/users/users.service';
 
 const Index = () => {
 	const [showAdd, setShowAdd] = React.useState<boolean>(true);
@@ -13,6 +14,7 @@ const Index = () => {
 	const [selectedUser, setSelectedUser] = React.useState<IUser | null>(null);
 
 	const { users } = useSelector((state: RootState) => state.users);
+	const dispatch = useDispatch<AppDispatch>();
 
 	const handleShowUser = () => {
 		setShowAdd((prev) => !prev);
@@ -23,6 +25,9 @@ const Index = () => {
 		setShowAdd((prev) => !prev);
 	};
 
+	React.useEffect(() => {
+		dispatch(getUsers());
+	}, []);
 	return (
 		<>
 			<Head>

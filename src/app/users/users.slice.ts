@@ -38,7 +38,7 @@ const authSlice = createSlice({
 				state.status.isSuccess = true;
 				state.status.isError = false;
 				state.users = action.payload.data;
-				state.message = action.payload.message;
+				state.message = 'donnees chargées';
 			})
 			.addCase(getUsers.rejected, (state, action) => {
 				state.status.isLoading = false;

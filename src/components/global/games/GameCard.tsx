@@ -10,7 +10,7 @@ const GameCard = ({ game }: { game: IGame }) => {
 				{game.TeamOne?.title}
 			</h3>
 			<p className='text-center text-xs text-black/50 dark:text-white/50'>
-				{game.TeamOne.town}
+				{game.TeamOne?.town}
 			</p>
 			<div className='w-12 h-12 rounded-full mx-auto bg-black/10 dark:bg-white/25 flex justify-center items-center my-4'>
 				<span>vs</span>
@@ -19,7 +19,7 @@ const GameCard = ({ game }: { game: IGame }) => {
 				{game.TeamTwo?.title}
 			</h3>
 			<p className='text-center text-xs text-black/50 dark:text-white/50'>
-				{game.TeamTwo.town}
+				{game.TeamTwo?.town}
 			</p>
 		</div>
 	);

@@ -42,7 +42,7 @@ const competSlice = createSlice({
 				state.status.isSuccess = true;
 				state.status.isError = false;
 				state.competitons = action.payload.data;
-				state.message = action.payload.message;
+				state.message = 'competitions chargées';
 			})
 			.addCase(getCompets.rejected, (state, action) => {
 				state.status.isLoading = false;

@@ -7,3 +7,5 @@ export const USERS = BASE_URL + '/users';
 export const COMPETITIONS = BASE_URL + '/compets';
 
 export const GAMES = BASE_URL + '/games';
+
+export const TEAMS_ROUTE = BASE_URL + '/teams';

@@ -9,10 +9,12 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
 import { getGames } from '@/app/games/games.service';
+import { getCompets } from '@/app/compet/compets.service';
 
 const Index = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const { games } = useSelector((state: RootState) => state.games);
+	const { competitons } = useSelector((state: RootState) => state.competitions);
 	const [gameInput, setGameInput] = React.useState({
 		competition: '',
 		team1: '',
@@ -33,13 +35,15 @@ const Index = () => {
 	};
 
 	const handleCreate = () => {
-		console.log('hello world');
+		console.log('hello world', gameInput);
 		handleShow();
 	};
 
 	React.useEffect(() => {
+		if (competitons?.length! < 1) dispatch(getCompets());
 		dispatch(getGames());
 	}, []);
+
 	return (
 		<>
 			<Head>
@@ -76,7 +80,7 @@ const Index = () => {
 							id='title'
 							size='large'
 							placeholder='Selectionner la competition'
-							options={competList.map((compet) => ({
+							options={competitons?.map((compet) => ({
 								value: compet.id,
 								label: compet.title,
 							}))}

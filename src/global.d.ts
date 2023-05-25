@@ -42,6 +42,12 @@ declare interface ITeam {
 	updatedAt: Date;
 }
 
+declare interface ITeamState {
+	teams: ITeam[] | null;
+	status: { isLoading: boolean; isSuccess: boolean; isError: boolean };
+	message: string;
+}
+
 declare interface IGame {
 	id: string;
 	date: Date;

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createGame, getGames } from './games.service';
+import { createTeam, getTeams } from './teams.service';
 
-const initialState: IGameState = {
-	games: [],
+const initialState: ITeamState = {
+	teams: [],
 	status: {
 		isLoading: false,
 		isSuccess: false,
@@ -11,51 +11,51 @@ const initialState: IGameState = {
 	message: '',
 };
 
-const gameSlice = createSlice({
-	name: 'games',
+const teamSlice = createSlice({
+	name: 'teams',
 	initialState,
 	reducers: {
 		resetStatus: (state) => {
 			state.message = '';
 		},
 		setFromStatic: (state, action) => {
-			state.games = action.payload.data;
+			state.teams = action.payload.data;
 			state.message = action.payload.message;
 		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(getGames.pending, (state) => {
+			.addCase(getTeams.pending, (state) => {
 				state.status.isLoading = true;
 				state.status.isSuccess = false;
 				state.status.isError = false;
 			})
-			.addCase(getGames.fulfilled, (state, action) => {
+			.addCase(getTeams.fulfilled, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = true;
 				state.status.isError = false;
-				state.games = action.payload.data;
+				state.teams = action.payload.data;
 				state.message = 'donnees chargées';
 			})
-			.addCase(getGames.rejected, (state, action) => {
+			.addCase(getTeams.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
 				state.message = action.payload as string;
 			})
-			.addCase(createGame.pending, (state) => {
+			.addCase(createTeam.pending, (state) => {
 				state.status.isLoading = true;
 				state.status.isSuccess = false;
 				state.status.isError = false;
 			})
-			.addCase(createGame.fulfilled, (state, action) => {
+			.addCase(createTeam.fulfilled, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = true;
 				state.status.isError = false;
-				state.games?.push(action.payload.data);
+				state.teams?.push(action.payload.data);
 				state.message = action.payload.message;
 			})
-			.addCase(createGame.rejected, (state, action) => {
+			.addCase(createTeam.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
@@ -64,5 +64,5 @@ const gameSlice = createSlice({
 	},
 });
 
-export const { resetStatus, setFromStatic } = gameSlice.actions;
-export default gameSlice.reducer;
+export const { resetStatus, setFromStatic } = teamSlice.actions;
+export default teamSlice.reducer;
