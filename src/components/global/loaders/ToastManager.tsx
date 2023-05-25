@@ -11,6 +11,9 @@ const ToastManager = () => {
 	const { status, message: authMessage } = useSelector(
 		(state: RootState) => state.auth
 	);
+	const { status: usersStatus, message: usersMessage } = useSelector(
+		(state: RootState) => state.auth
+	);
 	const [toast, context] = message.useMessage();
 
 	const error = (status: NoticeType, message: string) => {
@@ -27,10 +30,15 @@ const ToastManager = () => {
 			dispatch(resetStatus());
 		}
 	}, [status.isSuccess, status.isError]);
+
+	React.useEffect(() => {
+		if (usersStatus.isError && usersMessage) error('error', usersMessage);
+		if (usersStatus.isSuccess && usersMessage) error('success', usersMessage);
+	}, [usersStatus.isSuccess, usersStatus.isError]);
 	return (
 		<>
 			{context}
-			<LoadingToast isShow={status.isLoading} />
+			<LoadingToast isShow={status.isLoading || usersStatus.isLoading} />
 		</>
 	);
 };

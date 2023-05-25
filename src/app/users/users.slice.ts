@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from './auth.service';
+import { createUser, getUsers } from './users.service';
 
-let localUser: (IUser & { token: string }) | null = null;
+let localUser: IUser | null = null;
 if (typeof window !== 'undefined') {
 	localUser = localStorage?.getItem('soccer-user')
 		? JSON.parse(localStorage?.getItem('soccer-user')!)
 		: null;
 }
 
-const initialState: IAuthState = {
-	user: localUser,
+const initialState: IUserState = {
+	users: [],
 	status: {
 		isLoading: false,
 		isSuccess: false,
@@ -19,32 +19,28 @@ const initialState: IAuthState = {
 };
 
 const authSlice = createSlice({
-	name: 'auth',
+	name: 'users',
 	initialState,
 	reducers: {
-		logout: (state) => {
-			state.user = null;
-		},
 		resetStatus: (state) => {
 			state.message = '';
 		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(login.pending, (state) => {
+			.addCase(getUsers.pending, (state) => {
 				state.status.isLoading = true;
 				state.status.isSuccess = false;
 				state.status.isError = false;
 			})
-			.addCase(login.fulfilled, (state, action) => {
+			.addCase(getUsers.fulfilled, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = true;
 				state.status.isError = false;
-				state.user = action.payload.data;
+				state.users = action.payload.data;
 				state.message = action.payload.message;
-				localStorage.setItem('soccer-user', JSON.stringify(state.user));
 			})
-			.addCase(login.rejected, (state, action) => {
+			.addCase(getUsers.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
@@ -53,5 +49,5 @@ const authSlice = createSlice({
 	},
 });
 
-export const { logout, resetStatus } = authSlice.actions;
+export const { resetStatus } = authSlice.actions;
 export default authSlice.reducer;

@@ -5,8 +5,17 @@ import Card from '@/components/admin/dashboard/Card';
 import { games } from '@/data/fakes';
 import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
+import { getUsers } from '@/app/users/users.service';
 
 const Dashboard = () => {
+	const dispatch = useDispatch<AppDispatch>();
+	const { users } = useSelector((state: RootState) => state.users);
+
+	React.useEffect(() => {
+		dispatch(getUsers());
+	}, []);
 	return (
 		<>
 			<Head>
@@ -14,7 +23,11 @@ const Dashboard = () => {
 			</Head>
 			<div className='cards flex flex-wrap'>
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
-					<Card number={12} title='utilisateur' icon={<FaUserAlt />} />
+					<Card
+						number={users?.length}
+						title='utilisateur'
+						icon={<FaUserAlt />}
+					/>
 				</div>
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card number={23} title='equipes' icon={<FaUserFriends />} />
