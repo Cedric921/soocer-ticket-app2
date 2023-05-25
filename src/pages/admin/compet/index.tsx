@@ -4,10 +4,15 @@ import PageHeader from '@/components/global/PageHeader';
 import { Button, Input, Modal } from 'antd';
 import React from 'react';
 import { competList } from '@/data/fakes';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
+import { getCompets } from '@/app/compet/compets.service';
 
 const Index = () => {
 	const [visibleAddCompet, setVisibleAddCompet] =
 		React.useState<boolean>(false);
+	const { competitons } = useSelector((state: RootState) => state.competitions);
+	const dispatch = useDispatch<AppDispatch>();
 
 	const handleShow = () => {
 		setVisibleAddCompet((prev) => !prev);
@@ -17,6 +22,10 @@ const Index = () => {
 		console.log('hello world');
 		handleShow();
 	};
+
+	React.useEffect(() => {
+		dispatch(getCompets());
+	}, [dispatch]);
 	return (
 		<div>
 			<PageHeader
@@ -26,7 +35,7 @@ const Index = () => {
 				handleClick={handleShow}
 			/>
 			<div className='flex flex-wrap'>
-				{competList.map((el, i) => (
+				{competitons?.map((el, i) => (
 					<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
 						<CompetCard compet={el} />
 					</div>

@@ -3,13 +3,16 @@ import { Button } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 import { games, teams } from '@/data/fakes';
+import { useRouter } from 'next/router';
 
-const competition = () => {
+const Competition = ({ id }: { id: string }) => {
+	const router = useRouter();
+
 	return (
 		<div className='p-4'>
 			<div className='w-full flex justify-between'>
 				<h1 className='text-2xl md:text-4xl font-semibold dark:text-white'>
-					Champios League
+					Champios League {id}
 				</h1>
 				<Link href='/admin/compet'>
 					<Button size='large'>Retour a la liste</Button>
@@ -74,4 +77,10 @@ const competition = () => {
 	);
 };
 
-export default competition;
+Competition.getInitialProps = async ({ query }: { query: { id: string } }) => {
+	const { id } = query;
+
+	return { id };
+};
+
+export default Competition;

@@ -2,15 +2,7 @@ import { Button } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 
-interface ICompetiton {
-	compet: {
-		title: string;
-		id: string;
-		description: string;
-	};
-}
-
-const CompetCard = ({ compet }: ICompetiton) => {
+const CompetCard = ({ compet }: { compet: ICompetition }) => {
 	return (
 		<div className='border dark:border-black bg-white dark:bg-black/70 hover:border-black dark:hover:border-white hover:bg-black/10 dark:hover:bg-black duration-1000 p-4 rounded-lg'>
 			<h2 className='text-2xl font-semibold dark:text-white/90'>

@@ -1,15 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCompet, getCompets } from './compets.service';
+import { createGame, getGames } from './games.service';
 
-let localUser: IUser | null = null;
-if (typeof window !== 'undefined') {
-	localUser = localStorage?.getItem('soccer-user')
-		? JSON.parse(localStorage?.getItem('soccer-user')!)
-		: null;
-}
-
-const initialState: ICopmetitionState = {
-	competitons: [],
+const initialState: IGameState = {
+	games: [],
 	status: {
 		isLoading: false,
 		isSuccess: false,
@@ -18,51 +11,51 @@ const initialState: ICopmetitionState = {
 	message: '',
 };
 
-const competSlice = createSlice({
-	name: 'competitions',
+const gameSlice = createSlice({
+	name: 'games',
 	initialState,
 	reducers: {
 		resetStatus: (state) => {
 			state.message = '';
 		},
 		setFromStatic: (state, action) => {
-			state.competitons = action.payload.data;
+			state.games = action.payload.data;
 			state.message = action.payload.message;
 		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(getCompets.pending, (state) => {
+			.addCase(getGames.pending, (state) => {
 				state.status.isLoading = true;
 				state.status.isSuccess = false;
 				state.status.isError = false;
 			})
-			.addCase(getCompets.fulfilled, (state, action) => {
+			.addCase(getGames.fulfilled, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = true;
 				state.status.isError = false;
-				state.competitons = action.payload.data;
+				state.games = action.payload.data;
 				state.message = action.payload.message;
 			})
-			.addCase(getCompets.rejected, (state, action) => {
+			.addCase(getGames.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
 				state.message = action.payload as string;
 			})
-			.addCase(createCompet.pending, (state) => {
+			.addCase(createGame.pending, (state) => {
 				state.status.isLoading = true;
 				state.status.isSuccess = false;
 				state.status.isError = false;
 			})
-			.addCase(createCompet.fulfilled, (state, action) => {
+			.addCase(createGame.fulfilled, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = true;
 				state.status.isError = false;
-				state.competitons?.push(action.payload.data);
+				state.games?.push(action.payload.data);
 				state.message = action.payload.message;
 			})
-			.addCase(createCompet.rejected, (state, action) => {
+			.addCase(createGame.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
@@ -71,5 +64,5 @@ const competSlice = createSlice({
 	},
 });
 
-export const { resetStatus, setFromStatic } = competSlice.actions;
-export default competSlice.reducer;
+export const { resetStatus, setFromStatic } = gameSlice.actions;
+export default gameSlice.reducer;

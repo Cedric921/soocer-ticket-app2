@@ -3,11 +3,16 @@
 import React from 'react';
 import PageHeader from '@/components/global/PageHeader';
 import { Button, DatePicker, Input, Modal, Select } from 'antd';
-import { competList, games, teams } from '@/data/fakes';
+import { competList, teams } from '@/data/fakes';
 import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
+import { getGames } from '@/app/games/games.service';
 
 const Index = () => {
+	const dispatch = useDispatch<AppDispatch>();
+	const { games } = useSelector((state: RootState) => state.games);
 	const [gameInput, setGameInput] = React.useState({
 		competition: '',
 		team1: '',
@@ -31,6 +36,10 @@ const Index = () => {
 		console.log('hello world');
 		handleShow();
 	};
+
+	React.useEffect(() => {
+		dispatch(getGames());
+	}, []);
 	return (
 		<>
 			<Head>
@@ -43,7 +52,7 @@ const Index = () => {
 				handleClick={handleShow}
 			/>
 			<div className='flex flex-wrap'>
-				{games.map((game, i) => (
+				{games?.map((game, i) => (
 					<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
 						<GameCard game={game} />
 					</div>
