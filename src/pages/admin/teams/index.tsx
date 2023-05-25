@@ -1,10 +1,13 @@
 'use client';
 
+import { AppDispatch, RootState } from '@/app/store';
+import { getTeams } from '@/app/teams/teams.service';
 import DetailsTeamCard from '@/components/admin/team/DetailsTeamCard';
 import CreateTeamForm from '@/components/admin/team/TeamForm';
 import PageHeader from '@/components/global/PageHeader';
 import { teams } from '@/data/fakes';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface ITeam {
 	id: string;
@@ -18,6 +21,9 @@ const Index = () => {
 	const [isEdit, setIsEdit] = React.useState<boolean>(false);
 	const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null);
 
+	const { teams } = useSelector((state: RootState) => state.teams);
+	const dispatch = useDispatch<AppDispatch>();
+
 	const handleShow = () => {
 		setShowAdd((prev) => !prev);
 	};
@@ -26,6 +32,10 @@ const Index = () => {
 		setIsEdit(true);
 		setShowAdd((prev) => !prev);
 	};
+
+	React.useEffect(() => {
+		dispatch(getTeams());
+	}, [dispatch]);
 
 	return (
 		<div>
@@ -55,7 +65,7 @@ const Index = () => {
 								<span>Sigle</span>
 							</div>
 						</div>
-						{teams.map((team, i) => (
+						{teams?.map((team, i) => (
 							<>
 								<div
 									className={`flex ${
@@ -68,7 +78,7 @@ const Index = () => {
 									}}
 								>
 									<div className='text-center w-12 flex items-center justify-center'>
-										<span>{team?.id}</span>
+										<span>{+i + 1}</span>
 									</div>
 									<div className='text-center w-1/4 flex items-center justify-center'>
 										<span>{team?.title}</span>

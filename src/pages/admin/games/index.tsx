@@ -3,7 +3,6 @@
 import React from 'react';
 import PageHeader from '@/components/global/PageHeader';
 import { Button, DatePicker, Input, Modal, Select } from 'antd';
-import { competList, teams } from '@/data/fakes';
 import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +13,7 @@ import { getCompets } from '@/app/compet/compets.service';
 const Index = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const { games } = useSelector((state: RootState) => state.games);
+	const { teams } = useSelector((state: RootState) => state.teams);
 	const { competitons } = useSelector((state: RootState) => state.competitions);
 	const [gameInput, setGameInput] = React.useState({
 		competition: '',
@@ -103,7 +103,7 @@ const Index = () => {
 							id='title'
 							size='large'
 							placeholder='Selectionner une equipe'
-							options={teams.map((team) => ({
+							options={teams?.map((team) => ({
 								value: team.id,
 								label: team.title,
 							}))}
@@ -126,7 +126,7 @@ const Index = () => {
 							id='title'
 							size='large'
 							placeholder='Selectionner une equipe'
-							options={teams.map((team) => ({
+							options={teams?.map((team) => ({
 								value: team.id,
 								label: team.title,
 							}))}

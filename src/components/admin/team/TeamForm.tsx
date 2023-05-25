@@ -1,5 +1,8 @@
+import { AppDispatch } from '@/app/store';
+import { createTeam } from '@/app/teams/teams.service';
 import { Button, Input } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 const CreateTeamForm = ({
 	handleShow,
@@ -14,17 +17,42 @@ const CreateTeamForm = ({
 		sigle: string;
 	};
 }) => {
+	const dispatch = useDispatch<AppDispatch>();
 	const [teamInput, setTeamInput] = React.useState({
 		title: '',
 		town: '',
 		sigle: '',
 	});
+	const [errorLog, setErrorLog] = React.useState({
+		title: false,
+		town: false,
+	});
 
 	const handleChangeTeamInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTeamInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+		setErrorLog((prev) => ({ ...prev, [e.target.name]: false }));
 	};
+
+	const validate = () => {
+		let notError = true;
+		if (teamInput.title.length < 4) {
+			setErrorLog((prev) => ({ ...prev, title: true }));
+			notError = false;
+		}
+		if (teamInput.town.length < 4) {
+			setErrorLog((prev) => ({ ...prev, town: true }));
+			notError = false;
+		}
+
+		return notError;
+	};
+
 	const handleCreateTeam = () => {
-		handleShow();
+		console.log(isEdit, teamInput);
+		if (validate()) {
+			!isEdit ? dispatch(createTeam(teamInput)) : null;
+		}
+		setTeamInput({ sigle: '', title: '', town: '' });
 	};
 
 	React.useEffect(() => {
@@ -46,7 +74,9 @@ const CreateTeamForm = ({
 						Designation
 					</label>
 					<Input
-						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
+						className={`bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 ${
+							errorLog.title ? 'border-red-500' : 'border-black/10 '
+						} `}
 						type='text'
 						name='title'
 						id='title'
@@ -54,6 +84,9 @@ const CreateTeamForm = ({
 						value={teamInput?.title}
 						onChange={handleChangeTeamInput}
 					/>
+					{errorLog.title ? (
+						<span className='text-red-600 text-xs'>contenu invalide</span>
+					) : null}
 				</div>
 				<div className='flex flex-col py-2'>
 					<label
@@ -63,7 +96,9 @@ const CreateTeamForm = ({
 						Ville
 					</label>
 					<Input
-						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
+						className={`bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 ${
+							errorLog.town ? 'border-red-500' : 'border-black/10 '
+						} `}
 						type='text'
 						name='town'
 						id='town'
@@ -71,6 +106,9 @@ const CreateTeamForm = ({
 						value={teamInput?.town}
 						onChange={handleChangeTeamInput}
 					/>
+					{errorLog.town ? (
+						<span className='text-red-600 text-xs'>contenu invalide</span>
+					) : null}
 				</div>
 				<div className='flex flex-col py-2'>
 					<label

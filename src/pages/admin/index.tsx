@@ -1,20 +1,37 @@
 import React from 'react';
-import { FaUserAlt, FaUserFriends } from 'react-icons/fa';
+import {
+	FaFootballBall,
+	FaPlaystation,
+	FaUserAlt,
+	FaUserFriends,
+} from 'react-icons/fa';
 import { Button, Input } from 'antd';
 import Card from '@/components/admin/dashboard/Card';
-import { games } from '@/data/fakes';
 import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
 import { getUsers } from '@/app/users/users.service';
+import { getCompets } from '@/app/compet/compets.service';
+import { getTeams } from '@/app/teams/teams.service';
+import { getGames } from '@/app/games/games.service';
 
 const Dashboard = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const { users } = useSelector((state: RootState) => state.users);
+	const { competitons } = useSelector((state: RootState) => state.competitions);
+	const { games } = useSelector((state: RootState) => state.games);
+	const { teams } = useSelector((state: RootState) => state.teams);
 
 	React.useEffect(() => {
-		dispatch(getUsers());
+		const fetch = async () => {
+			users?.length! < 1 ? dispatch(getUsers()) : null;
+			competitons?.length! < 1 ? dispatch(getCompets()) : null;
+			teams?.length! < 1 ? dispatch(getTeams()) : null;
+			games?.length! < 1 ? dispatch(getGames()) : null;
+		};
+
+		fetch();
 	}, []);
 	return (
 		<>
@@ -25,18 +42,30 @@ const Dashboard = () => {
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
 					<Card
 						number={users?.length}
-						title='utilisateur'
+						title='utilisateurs'
 						icon={<FaUserAlt />}
 					/>
 				</div>
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
-					<Card number={23} title='equipes' icon={<FaUserFriends />} />
+					<Card
+						number={teams?.length}
+						title='equipes'
+						icon={<FaUserFriends />}
+					/>
 				</div>
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
-					<Card number={9} title='competitions' icon={<FaUserAlt />} />
+					<Card
+						number={competitons?.length}
+						title='competitions'
+						icon={<FaPlaystation />}
+					/>
 				</div>
 				<div className='w-full sm:w-1/2 lg:w-1/4 h-52 p-2 md:p-4'>
-					<Card number={21} title='rencontres' icon={<FaUserAlt />} />
+					<Card
+						number={games?.length}
+						title='rencontres'
+						icon={<FaFootballBall />}
+					/>
 				</div>
 			</div>
 			<div className='flex flex-wrap-reverse p-4'>
@@ -68,22 +97,24 @@ const Dashboard = () => {
 							<div className='w-full md:w-1/2 min-h-[20rem] p-2'>
 								<div className='rounded-2xl shadow-[0px_5px_10px_5px_#00000024] h-full border-black/70 dark:text-white/80 border-2 p-2 relative'>
 									<span className='bg-black/60 text-white p-1 text-xs rounded'>
-										{games[0].date.toLocaleDateString()}
+										{games[0]
+											? new Date(games[0]?.date)?.toLocaleDateString()
+											: null}
 									</span>
 									<h3 className='text-2xl text-center font-semibold  text-black/80 dark:text-white/80'>
-										{games[0].team1?.title}
+										{games[0]?.TeamOne?.title ?? '...'}
 									</h3>
 									<p className='text-center text-xs text-black/50 dark:text-white/50'>
-										{games[0].team1.town}
+										{games[0]?.TeamOne?.town ?? '...'}
 									</p>
 									<div className='w-8 h-8 rounded-full mx-auto bg-black/10 flex justify-center items-center my-4'>
 										<span>vs</span>
 									</div>
 									<h3 className='text-2xl text-center font-semibold text-black/80 dark:text-white/80'>
-										{games[0].team2?.title}
+										{games[0]?.TeamTwo?.title ?? '...'}
 									</h3>
 									<p className='text-center text-xs text-black/50 dark:text-white/50'>
-										{games[0].team2.town}
+										{games[0]?.TeamTwo?.town ?? '...'}
 									</p>
 									<div className='bg-black/70 rounded-b-xl text-white text-center mx-auto absolute bottom-0 left-0 right-0'>
 										<h4 className='text-center pt-2 '>{'Cedric karungu'}</h4>
