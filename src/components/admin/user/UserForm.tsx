@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd';
+import { Button, Input, Select } from 'antd';
 import React from 'react';
 
 const CreateUserForm = ({
@@ -8,12 +8,19 @@ const CreateUserForm = ({
 }: {
 	handleShow: () => void;
 	isEdit?: boolean;
-	user?: any;
+	user?: IUser;
 }) => {
-	const [userInput, setUserInput] = React.useState({
+	const [userInput, setUserInput] = React.useState<
+		| {
+				names: string;
+				email: string;
+				role: string;
+		  }
+		| IUser
+	>({
 		names: '',
 		email: '',
-		tel: '',
+		role: '',
 	});
 
 	const handleChangeUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +32,7 @@ const CreateUserForm = ({
 
 	React.useEffect(() => {
 		if (isEdit) {
-			setUserInput(user);
+			setUserInput(user!);
 		}
 	}, []);
 	return (
@@ -73,16 +80,22 @@ const CreateUserForm = ({
 						htmlFor='email'
 						className='text-sm text-black/80  dark:text-white/70'
 					>
-						Numero de telephone
+						Role
 					</label>
-					<Input
-						className='bg-white/80 dark:bg-white/40 text-black/80 dark:text-white/70 border-black/10'
-						type='tel'
-						name='tel'
-						id='tel'
+					<Select
+						className='bg-slate-100'
+						id='role'
 						size='large'
-						value={userInput?.tel}
-						onChange={handleChangeUserInput}
+						placeholder='Selectionner une equipe'
+						options={['ADMIN', 'USER'].map((team) => ({
+							value: team,
+							label: team,
+						}))}
+						filterOption={(input, option) =>
+							(option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+						}
+						optionFilterProp='children'
+						onChange={(e) => setUserInput((prev) => ({ ...prev, role: e }))}
 					/>
 				</div>
 			</form>

@@ -7,12 +7,7 @@ const DetailsUserCard = ({
 	user,
 }: {
 	handleShowEdit: () => void;
-	user: {
-		id: string;
-		names: string;
-		email: string;
-		tel: string;
-	};
+	user: IUser;
 }) => {
 	const showEdit = () => {
 		handleShowEdit();
@@ -43,8 +38,8 @@ const DetailsUserCard = ({
 					<FaPhone />
 				</div>
 				<div>
-					<label className='font-light text-sm'>Telephone</label>
-					<p className='font-semibold'>+{user?.tel}</p>
+					<label className='font-light text-sm'>Role</label>
+					<p className='font-semibold'>+{user?.role}</p>
 				</div>
 			</div>
 			<Button size='large' className='w-full' onClick={showEdit}>

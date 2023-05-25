@@ -3,19 +3,16 @@ import DetailsUserCard from '@/components/admin/user/DetailsUserCard';
 import PageHeader from '@/components/global/PageHeader';
 import React from 'react';
 import Head from 'next/head';
-import { users } from '@/data/fakes';
-
-interface IUser {
-	id: string;
-	names: string;
-	email: string;
-	tel: string;
-}
+// import { users } from '@/data/fakes';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 const Index = () => {
 	const [showAdd, setShowAdd] = React.useState<boolean>(true);
 	const [isEdit, setIsEdit] = React.useState<boolean>(false);
 	const [selectedUser, setSelectedUser] = React.useState<IUser | null>(null);
+
+	const { users } = useSelector((state: RootState) => state.users);
 
 	const handleShowUser = () => {
 		setShowAdd((prev) => !prev);
@@ -54,10 +51,10 @@ const Index = () => {
 								<span>Email</span>
 							</div>
 							<div className='text-center w-1/4 flex items-center justify-center'>
-								<span>Telephone</span>
+								<span>Role</span>
 							</div>
 						</div>
-						{users.map((user, i) => (
+						{users?.map((user: IUser, i) => (
 							<>
 								<div
 									className={`flex ${
@@ -70,7 +67,7 @@ const Index = () => {
 									}}
 								>
 									<div className='text-center w-12 flex items-center justify-center'>
-										<span>{user?.id}</span>
+										<span>{+i + 1}</span>
 									</div>
 									<div className='text-center w-1/4 flex items-center justify-center'>
 										<span>{user?.names}</span>
@@ -79,7 +76,7 @@ const Index = () => {
 										<span>{user?.email}</span>
 									</div>
 									<div className='text-center w-1/4 flex items-center justify-center'>
-										<span>{user?.tel}</span>
+										<span>{user?.role}</span>
 									</div>
 								</div>
 							</>
@@ -91,7 +88,7 @@ const Index = () => {
 						<CreateUserForm
 							handleShow={handleShowEdit}
 							isEdit={isEdit}
-							user={selectedUser}
+							user={selectedUser!}
 						/>
 					) : (
 						<DetailsUserCard
