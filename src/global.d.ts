@@ -74,3 +74,21 @@ declare interface IGameState {
 	status: { isLoading: boolean; isSuccess: boolean; isError: boolean };
 	message: string;
 }
+
+declare interface IReservation {
+	id: string;
+	date: string;
+	createdAt: Date;
+	updatedAt: Date;
+	userId: string;
+	gameId: string;
+	Game: IGame;
+	User: IUser;
+}
+
+declare interface IReservationState {
+	reservations: IReservation[] | null;
+	selected: IReservation | null;
+	status: { isLoading: boolean; isSuccess: boolean; isError: boolean };
+	message: string;
+}

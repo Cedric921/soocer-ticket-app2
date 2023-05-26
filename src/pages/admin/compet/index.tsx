@@ -48,11 +48,17 @@ const Index = () => {
 				handleClick={handleShow}
 			/>
 			<div className='flex flex-wrap items-stretch'>
-				{competitons?.map((el, i) => (
-					<div key={i} className='w-full  md:w-1/3 2xl:w-1/4 p-4'>
-						<CompetCard compet={el} />
+				{competitons?.length! > 0 ? (
+					competitons?.map((el, i) => (
+						<div key={i} className='w-full  md:w-1/3 2xl:w-1/4 p-4'>
+							<CompetCard compet={el} />
+						</div>
+					))
+				) : (
+					<div className='dark:text-white min-h-[20rem] w-full justify-center text-center h-full flex items-center'>
+						<p>Pas des competitions enregostrées</p>
 					</div>
-				))}
+				)}
 			</div>
 			<Modal
 				open={visibleAddCompet}

@@ -58,33 +58,39 @@ const Index = () => {
 								<span>Sigle</span>
 							</div>
 						</div>
-						{teams?.map((team, i) => (
-							<>
-								<div
-									className={`flex ${
-										i % 2 !== 0 ? 'bg-white dark:bg-black/50' : null
-									}  hover:bg-black/70 dark:hover:bg-white/40 min-w-[40rem] hover:text-white dark:text-white/70  duration-1000 rounded justify-between py-4 cursor-pointer`}
-									onClick={() => {
-										setSelectedTeam(team);
-										setIsEdit(false);
-										setShowAdd(false);
-									}}
-								>
-									<div className='text-center w-12 flex items-center justify-center'>
-										<span>{+i + 1}</span>
+						{teams?.length! > 0 ? (
+							teams?.map((team, i) => (
+								<>
+									<div
+										className={`flex ${
+											i % 2 !== 0 ? 'bg-white dark:bg-black/50' : null
+										}  hover:bg-black/70 dark:hover:bg-white/40 min-w-[40rem] hover:text-white dark:text-white/70  duration-1000 rounded justify-between py-4 cursor-pointer`}
+										onClick={() => {
+											setSelectedTeam(team);
+											setIsEdit(false);
+											setShowAdd(false);
+										}}
+									>
+										<div className='text-center w-12 flex items-center justify-center'>
+											<span>{+i + 1}</span>
+										</div>
+										<div className='text-center w-1/4 flex items-center justify-center'>
+											<span>{team?.title}</span>
+										</div>
+										<div className='text-center w-1/4 flex items-center justify-center'>
+											<span>{team?.town}</span>
+										</div>
+										<div className='text-center w-1/4 flex items-center justify-center'>
+											<span>{team?.sigle}</span>
+										</div>
 									</div>
-									<div className='text-center w-1/4 flex items-center justify-center'>
-										<span>{team?.title}</span>
-									</div>
-									<div className='text-center w-1/4 flex items-center justify-center'>
-										<span>{team?.town}</span>
-									</div>
-									<div className='text-center w-1/4 flex items-center justify-center'>
-										<span>{team?.sigle}</span>
-									</div>
-								</div>
-							</>
-						))}
+								</>
+							))
+						) : (
+							<div className='dark:text-white min-h-[20rem] w-full justify-center text-center h-full flex items-center'>
+								<p>Pas d&apos;equipes enregistrées</p>
+							</div>
+						)}
 					</div>
 				</div>
 				<div className='w-full md:fixed right-5 md:w-[28%] p-4 duration-1000'>

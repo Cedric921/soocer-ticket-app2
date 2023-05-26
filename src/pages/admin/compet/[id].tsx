@@ -40,7 +40,7 @@ const Competition = ({ id }: { id: string }) => {
 					</Button>
 				</Link>
 			</div>
-			<div className='p-2 md:p-8 text-black/70 dark:text-white/80 duration-1000 bg-white hover:bg-black/70 hover:text-white border border-black/20 rounded-lg my-4 md:my-8'>
+			<div className='p-2 md:p-8 text-black/70 dark:text-white/80 duration-1000 bg-white dark:bg-black/80 dark:hover:bg-black dark:hover:border-white hover:bg-black/70 hover:text-white border border-black/20 rounded-lg my-4 md:my-8'>
 				{detailsCompet?.description}
 			</div>
 			{/* <div className='my-4 md:my-8'>

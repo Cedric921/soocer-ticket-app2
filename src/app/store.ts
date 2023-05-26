@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/auth.slice';
 import usersReducer from './users/users.slice';
 import competitionReducer from './compet/compets.slice';
-import gamesReducer from './games/compets.slice';
+import gamesReducer from './games/games.slice';
 import teamReducer from './teams/teams.slice';
+import reservationsReducer from './reservations/reservations.slice';
 
 export const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
 		competitions: competitionReducer,
 		teams: teamReducer,
 		games: gamesReducer,
+		reservations: reservationsReducer,
 	},
 });
 

@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 import { message } from 'antd';
 import { NoticeType } from 'antd/es/message/interface';
-import { resetStatus } from '@/app/auth/auth.slice';
+import { resetStatus as authResetStatus } from '@/app/auth/auth.slice';
+import { resetStatus as gameResetStatus } from '@/app/games/games.slice';
+import { resetStatus as competitionStatus } from '@/app/compet/compets.slice';
 
 const ToastManager = () => {
 	const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const ToastManager = () => {
 		(state: RootState) => state.teams
 	);
 
-	const error = (status: NoticeType, message: string) => {
+	const messageToast = (status: NoticeType, message: string) => {
 		toast.open({
 			type: status,
 			content: message,
@@ -34,32 +36,43 @@ const ToastManager = () => {
 	};
 
 	React.useEffect(() => {
-		if (status.isError && authMessage) error('error', authMessage);
+		if (status.isError && authMessage) messageToast('error', authMessage);
 		if (status.isSuccess && authMessage) {
-			error('success', authMessage);
-			dispatch(resetStatus());
+			messageToast('success', authMessage);
+			dispatch(authResetStatus());
 		}
 	}, [status.isSuccess, status.isError]);
 
 	React.useEffect(() => {
-		if (usersStatus.isError && usersMessage) error('error', usersMessage);
-		if (usersStatus.isSuccess && usersMessage) error('success', usersMessage);
+		if (usersStatus.isError && usersMessage)
+			messageToast('error', usersMessage);
+		if (usersStatus.isSuccess && usersMessage)
+			messageToast('success', usersMessage);
 	}, [usersStatus.isSuccess, usersStatus.isError]);
 
 	React.useEffect(() => {
-		if (competStatus.isError && competMessage) error('error', competMessage);
-		if (competStatus.isSuccess && competMessage)
-			error('success', competMessage);
+		if (competStatus.isError && competMessage)
+			messageToast('error', competMessage);
+		if (competStatus.isSuccess && competMessage) {
+			messageToast('success', competMessage);
+			dispatch(competitionStatus());
+		}
 	}, [competStatus.isSuccess, competStatus.isError]);
 
 	React.useEffect(() => {
-		if (gamesStatus.isError && gamesMessage) error('error', gamesMessage);
-		if (gamesStatus.isSuccess && gamesMessage) error('success', gamesMessage);
+		if (gamesStatus.isError && gamesMessage)
+			messageToast('error', gamesMessage);
+		if (gamesStatus.isSuccess && gamesMessage) {
+			messageToast('success', gamesMessage);
+			dispatch(gameResetStatus());
+		}
 	}, [gamesStatus.isSuccess, gamesStatus.isError]);
 
 	React.useEffect(() => {
-		if (teamsStatus.isError && teamsMessage) error('error', teamsMessage);
-		if (teamsStatus.isSuccess && teamsMessage) error('success', teamsMessage);
+		if (teamsStatus.isError && teamsMessage)
+			messageToast('error', teamsMessage);
+		if (teamsStatus.isSuccess && teamsMessage)
+			messageToast('success', teamsMessage);
 	}, [teamsStatus.isSuccess, teamsStatus.isError]);
 
 	return (

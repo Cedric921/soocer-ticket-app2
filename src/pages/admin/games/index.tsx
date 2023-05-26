@@ -53,11 +53,17 @@ const Index = () => {
 				handleClick={handleShow}
 			/>
 			<div className='flex flex-wrap'>
-				{games?.map((game, i) => (
-					<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
-						<GameCard game={game} />
+				{games?.length! > 0 ? (
+					games?.map((game, i) => (
+						<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
+							<GameCard game={game} />
+						</div>
+					))
+				) : (
+					<div className='dark:text-white min-h-[20rem] w-full justify-center text-center h-full flex items-center'>
+						<p>Pas des rencontres enregistrées</p>
 					</div>
-				))}
+				)}
 			</div>
 			<Modal
 				open={visibleAddCompet}
