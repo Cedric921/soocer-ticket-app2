@@ -48,7 +48,7 @@ const CreateTeamForm = ({
 		if (validate()) {
 			!isEdit
 				? dispatch(createTeam(teamInput))
-				: dispatch(updateTeam({ id: team?.id! }));
+				: dispatch(updateTeam({ id: team?.id!, data: teamInput }));
 		}
 		setTeamInput({ sigle: '', title: '', town: '' });
 	};

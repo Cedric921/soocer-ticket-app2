@@ -7,8 +7,9 @@ import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
-import { getGames } from '@/app/games/games.service';
+import { createGame, getGames } from '@/app/games/games.service';
 import { getCompets } from '@/app/compet/compets.service';
+import { getTeams } from '@/app/teams/teams.service';
 
 const Index = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -17,8 +18,8 @@ const Index = () => {
 	const { competitons } = useSelector((state: RootState) => state.competitions);
 	const [gameInput, setGameInput] = React.useState({
 		competition: '',
-		team1: '',
-		team2: '',
+		teamOneId: '',
+		teamTwoId: '',
 		date: '',
 	});
 	const [visibleAddCompet, setVisibleAddCompet] =
@@ -28,21 +29,17 @@ const Index = () => {
 		setVisibleAddCompet((prev) => !prev);
 	};
 
-	const handleChangeForm = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
-		setGameInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-	};
-
 	const handleCreate = () => {
-		console.log('hello world', gameInput);
+		dispatch(createGame(gameInput));
 		handleShow();
+		dispatch(getGames());
 	};
 
 	React.useEffect(() => {
 		if (competitons?.length! < 1) dispatch(getCompets());
+		if (teams?.length! < 1) dispatch(getTeams());
 		dispatch(getGames());
-	}, []);
+	}, [dispatch, teams?.length, competitons?.length]);
 
 	return (
 		<>
@@ -90,8 +87,9 @@ const Index = () => {
 									.includes(input.toLowerCase())
 							}
 							optionFilterProp='children'
-							// value={userInput.email}
-							onChange={handleChangeForm}
+							onChange={(e) =>
+								setGameInput((p) => ({ ...p, competitionId: e }))
+							}
 						/>
 					</div>
 					<div className='flex flex-col py-2'>
@@ -113,8 +111,7 @@ const Index = () => {
 									.includes(input.toLowerCase())
 							}
 							optionFilterProp='children'
-							// value={userInput.email}
-							onChange={handleChangeForm}
+							onChange={(e) => setGameInput((p) => ({ ...p, teamOneId: e }))}
 						/>
 					</div>
 					<div className='flex flex-col py-2'>
@@ -136,15 +133,23 @@ const Index = () => {
 									.includes(input.toLowerCase())
 							}
 							optionFilterProp='children'
-							// value={userInput.email}
-							onChange={handleChangeForm}
+							onChange={(e) => setGameInput((p) => ({ ...p, teamTwoId: e }))}
 						/>
 					</div>
 					<div className='flex flex-col py-2'>
 						<label htmlFor='description' className='text-sm text-black/60'>
 							Date de rencontre
 						</label>
-						<DatePicker allowClear={true} size='large' />
+						<DatePicker
+							allowClear={true}
+							size='large'
+							onChange={(e) =>
+								setGameInput((prev) => ({
+									...prev,
+									date: e?.format('YYYY-MM-DDTHH:mm:ssZ')!,
+								}))
+							}
+						/>
 					</div>
 				</div>
 				<div className='w-full flex justify-end gap-2 mt-4'>
