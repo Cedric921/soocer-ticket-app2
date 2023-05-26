@@ -31,7 +31,18 @@ const Login = () => {
 	};
 
 	React.useEffect(() => {
-		if (user) router.replace('/admin');
+		if (user) {
+			switch (user.role) {
+				case 'ADMIN':
+					router.replace('/admin');
+					break;
+				case 'USER':
+					router.replace('/');
+					break;
+				default:
+					router.replace('/');
+			}
+		}
 	}, [user, router]);
 
 	return (

@@ -27,6 +27,15 @@ declare interface ICompetition {
 	updatedAt: Date;
 }
 
+declare interface IDetailsCompetition {
+	id: string;
+	title: string;
+	description: string;
+	createdAt: Date;
+	updatedAt: Date;
+	games: IGame[];
+}
+
 declare interface ICopmetitionState {
 	competitons: ICompetition[] | null;
 	status: { isLoading: boolean; isSuccess: boolean; isError: boolean };

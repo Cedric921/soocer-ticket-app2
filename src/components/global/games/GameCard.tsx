@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const GameCard = ({ game }: { game: IGame }) => {
@@ -21,6 +22,10 @@ const GameCard = ({ game }: { game: IGame }) => {
 			<p className='text-center text-xs text-black/50 dark:text-white/50'>
 				{game.TeamTwo?.town}
 			</p>
+			<Link
+				href={`/admin/games/${game.id}`}
+				className='absolute top-0 bottom-0 left-0 right-0'
+			></Link>
 		</div>
 	);
 };

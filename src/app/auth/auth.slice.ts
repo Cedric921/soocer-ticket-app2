@@ -24,6 +24,7 @@ const authSlice = createSlice({
 	reducers: {
 		logout: (state) => {
 			state.user = null;
+			localStorage.removeItem('soccer-user');
 		},
 		resetStatus: (state) => {
 			state.message = '';

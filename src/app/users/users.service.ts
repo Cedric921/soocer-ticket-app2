@@ -30,11 +30,14 @@ export const getUsers = createAsyncThunk(
 
 export const createUser = createAsyncThunk(
 	'users/create',
-	async (data, thunkAPI) => {
+	async (
+		data: { names: string; email: string; role: string } | IUser,
+		thunkAPI
+	) => {
 		try {
 			const { auth } = thunkAPI.getState() as RootState;
 			const token =
-				auth.user?.token ||
+				auth.user?.token ??
 				JSON.parse(localStorage.getItem('soccer-user')!).token;
 
 			const config = {
@@ -43,7 +46,11 @@ export const createUser = createAsyncThunk(
 				},
 			};
 
-			const res = await axios.post(USERS, data, config);
+			const res = await axios.post(
+				USERS,
+				{ ...data, password: '123456' },
+				config
+			);
 			return res.data;
 		} catch (error: any) {
 			const message =
@@ -59,7 +66,7 @@ export const updateUser = createAsyncThunk(
 		try {
 			const { auth } = thunkAPI.getState() as RootState;
 			const token =
-				auth.user?.token ||
+				auth.user?.token ??
 				JSON.parse(localStorage.getItem('soccer-user')!).token;
 
 			const config = {

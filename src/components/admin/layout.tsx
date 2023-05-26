@@ -6,6 +6,8 @@ import { FaRegWindowClose, FaUserAlt } from 'react-icons/fa';
 import Header from './Header';
 import { useRouter } from 'next/router';
 import { checkAdminRoute } from '@/utils/checkers';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 interface ILayout {
 	children: React.ReactNode;
@@ -17,6 +19,7 @@ const Layout = ({ children }: ILayout) => {
 	const [showAside, setShowAside] = React.useState(true);
 	const [onMobile, setOnMobile] = React.useState(false);
 	const [isDarkMode, setIsDarkMode] = React.useState<boolean>(false);
+	const { user } = useSelector((state: RootState) => state.auth);
 	React.useEffect(() => {
 		const onResize = () => {
 			setOnMobile(window.innerWidth <= 900);
@@ -30,6 +33,12 @@ const Layout = ({ children }: ILayout) => {
 		const isDark = JSON.parse(localStorage.getItem('theme')!);
 		setIsDarkMode(isDark ? true : false);
 	}, [isDarkMode]);
+
+	React.useEffect(() => {
+		if (checkAdminRoute(router.pathname) && user?.role !== 'ADMIN') {
+			router.replace('/');
+		}
+	}, [router, user]);
 
 	return (
 		<ConfigProvider
@@ -61,7 +70,12 @@ const Layout = ({ children }: ILayout) => {
 								<FaRegWindowClose />
 							</span>
 						)}
-						<Asidebar onMobile={onMobile} showAside={showAside} />
+						<Asidebar
+							onMobile={onMobile}
+							showAside={showAside}
+							darkMode={isDarkMode}
+							setDarkMode={setIsDarkMode}
+						/>
 					</aside>
 					<main className={`w-full ${showAside ? '' : 'max-w-screen'}`}>
 						<Header

@@ -1,5 +1,8 @@
+import { AppDispatch } from '@/app/store';
+import { createUser, updateUser } from '@/app/users/users.service';
 import { Button, Input, Select } from 'antd';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 const CreateUserForm = ({
 	handleShow,
@@ -22,12 +25,17 @@ const CreateUserForm = ({
 		email: '',
 		role: '',
 	});
-
+	const dispatch = useDispatch<AppDispatch>();
 	const handleChangeUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 	const handleCreateUser = () => {
+		isEdit
+			? dispatch(updateUser({ id: user?.id, data: userInput }))
+			: dispatch(createUser(userInput));
 		handleShow();
+
+		setUserInput({ names: '', email: '', role: '' });
 	};
 
 	React.useEffect(() => {
