@@ -56,9 +56,9 @@ const Asidebar = ({
 			{showAside ? (
 				<div className='relative h-full'>
 					<div className='p-4 px-2 flex flex-col'>
-						<Link href={'/'} className='text-3xl font-bold text-primary-700'>
+						<h2 className='text-3xl font-bold text-primary-700'>
 							soccer-ticket
-						</Link>
+						</h2>
 						<span>gooooli</span>
 					</div>
 					<div className='my-4 '>
