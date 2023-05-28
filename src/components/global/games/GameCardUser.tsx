@@ -27,10 +27,10 @@ const GameCard = ({ game }: { game: IGame }) => {
 					{new Date(game.date).toUTCString()}
 				</span>
 			</div>
-			{/* <Link
-				href={`/admin/games/${game.id}`}
+			<Link
+				href={`/user/games/${game.id}`}
 				className='absolute top-0 bottom-0 left-0 right-0'
-			></Link> */}
+			></Link>
 		</div>
 	);
 };
