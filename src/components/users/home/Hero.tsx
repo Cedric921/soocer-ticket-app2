@@ -3,7 +3,7 @@ import { FaPlay } from 'react-icons/fa';
 
 const Hero = () => {
 	return (
-		<div className=' container mx-auto w-full h-screen p-12 pt-24'>
+		<div className=' container mx-auto w-full h-screen p-6 md:p-12 pt-24'>
 			<div className='relative  h-full mb-12 overflow-hidden shadow-2xl rounded-3xl'>
 				<div className='absolute flex flex-col justify-center md:justify-start items-start  top-0 left-0 right-0 bottom-0 z-30 bg-black/60 text-white p-12'>
 					<span className='bg-primary-600 p-1 px-6 rounded-full '>Match</span>

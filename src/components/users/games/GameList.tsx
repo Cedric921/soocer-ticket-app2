@@ -16,11 +16,13 @@ const GameList = () => {
 	}, []);
 
 	return (
-		<div className='bg-white md:py-8'>
+		<div className='bg-white py-8'>
 			<div className='container mx-auto flex flex-col items-center'>
 				<span>match</span>
-				<h1 className='text-4xl font-semibold'>Les rencontres programmées</h1>
-				<div className='flex items-center my-4'>
+				<h1 className='text-2xl md:text-4xl font-semibold'>
+					Les rencontres programmées
+				</h1>
+				<div className='flex items-center flex-wrap w-full my-4'>
 					{competitons?.map((compet) => (
 						<CompetitionItem competition={compet} key={compet.id} />
 					))}

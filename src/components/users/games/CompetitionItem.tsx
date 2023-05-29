@@ -13,7 +13,7 @@ const CompetitionItem = ({
 				active ? 'bg-primary-800' : null
 			}`}
 		>
-			<span>{competition.title}</span>
+			<span className='text-sm '>{competition.title}</span>
 		</div>
 	);
 };

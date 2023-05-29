@@ -5,7 +5,7 @@ const Testimonials = () => {
 	return (
 		<div className='bg-white  relative'>
 			{/* <div className='absolute  md:right-0 md:top-5 bottom-5 w-full md:w-3/4 h-1/2 md:h-full bg-primary-600/20'></div> */}
-			<div className='container   z-30 mx-auto flex flex-wrap items-center py-24 md:p-24'>
+			<div className='container  pb-96 z-30 mx-auto flex flex-wrap items-center py-24 md:p-24'>
 				<div className='w-full md:translate-x-24 z-30 md:w-1/3 flex items-center justify-center'>
 					<div className='rounded-3xl w-96 h-96 bg-white'>
 						<Image
