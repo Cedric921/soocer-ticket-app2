@@ -22,7 +22,7 @@ const GameList = () => {
 				<h1 className='text-2xl md:text-4xl font-semibold'>
 					Les rencontres programmées
 				</h1>
-				<div className='flex items-center flex-wrap w-full my-4'>
+				<div className='flex items-center justify-center flex-wrap w-full my-4'>
 					{competitons?.map((compet) => (
 						<CompetitionItem competition={compet} key={compet.id} />
 					))}
