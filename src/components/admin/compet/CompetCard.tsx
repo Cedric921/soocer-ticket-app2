@@ -4,7 +4,7 @@ import React from 'react';
 
 const CompetCard = ({ compet }: { compet: ICompetition }) => {
 	return (
-		<div className='border dark:border-black bg-white dark:bg-black/70 hover:border-black dark:hover:border-white hover:bg-black/10 dark:hover:bg-black duration-1000 p-4 rounded-lg'>
+		<div className='border-2 dark:border-black bg-white dark:bg-black/70 hover:border-black dark:hover:border-white  dark:hover:bg-black duration-1000 p-4 rounded-lg'>
 			<h2 className='text-2xl font-semibold dark:text-white/90'>
 				{compet.title}
 			</h2>

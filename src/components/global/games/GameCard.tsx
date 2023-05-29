@@ -3,7 +3,7 @@ import React from 'react';
 
 const GameCard = ({ game }: { game: IGame }) => {
 	return (
-		<div className='border dark:border-2 dark:border-white/20 rounded bg-white dark:bg-black/70 hover:bg-black/10 dark:hover:bg-white/20 duration-1000 hover:border-black dark:text-white/60  p-4 py-6 relative'>
+		<div className='border-2 dark:border-white/20 rounded bg-white dark:bg-black/70 hover:border-black hover:shadow dark:hover:bg-white/20 duration-1000 dark:text-white/60  p-4 py-6 relative'>
 			<span className='bg-black/70 dark:bg-white/40 text-white p-1 text-xs rounded absolute -top-2'>
 				{new Date(game.date).toUTCString()}
 			</span>

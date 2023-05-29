@@ -67,7 +67,7 @@ const Asidebar = ({
 								<div
 									className={`flex gap-2 p-2 items-center rounded duration-1000 text-gray-700 dark:text-white/80 hover:text-white hover:bg-black/60 dark:hover:bg-white/20 ${
 										checkActiveRoute(router.pathname, link.link)
-											? `text-white bg-black/80 dark:bg-white/30`
+											? ` bg-white border  dark:bg-black`
 											: null
 									}`}
 								>

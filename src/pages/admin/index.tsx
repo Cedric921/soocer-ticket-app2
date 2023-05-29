@@ -173,9 +173,9 @@ const Dashboard = () => {
 				</h3>
 				<div className='flex flex-wrap'>
 					{games
-						?.filter((el) => new Date(el.date) >= new Date())
+						?.filter((el: IGame) => new Date(el.date) >= new Date())
 						.map((game, i) => (
-							<div key={i} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
+							<div key={game.id} className='w-full md:w-1/3 2xl:w-1/4 p-4'>
 								<GameCard game={game} />
 							</div>
 						))}
