@@ -18,7 +18,7 @@ const Testimonials = () => {
 					</div>
 				</div>
 				<div
-					data-aos='fade-left'
+					data-aos='zoom-out'
 					data-aos-anchor='#example-anchor'
 					data-aos-offset='500'
 					data-aos-duration='500'
