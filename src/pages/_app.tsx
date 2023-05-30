@@ -5,16 +5,23 @@ import { SessionProvider } from 'next-auth/react';
 import { Provider } from 'react-redux';
 import { store } from '@/app/store';
 import ToastManager from '@/components/global/loaders/ToastManager';
+import Head from 'next/head';
+import 'aos/dist/aos.css';
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store}>
-			<SessionProvider session={pageProps.session}>
-				<Layout>
-					<Component {...pageProps} />
-					<ToastManager />
-				</Layout>
-			</SessionProvider>
-		</Provider>
+		<>
+			<Head>
+				<title>soccer-ticket</title>
+			</Head>
+			<Provider store={store}>
+				<SessionProvider session={pageProps.session}>
+					<Layout>
+						<Component {...pageProps} />
+						<ToastManager />
+					</Layout>
+				</SessionProvider>
+			</Provider>
+		</>
 	);
 }

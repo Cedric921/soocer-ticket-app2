@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
 import { logout } from '@/app/auth/auth.slice';
+import Image from 'next/image';
 
 const Header = ({
 	setShowAside,
@@ -39,7 +40,7 @@ const Header = ({
 			key: '/deconnect',
 			onClick: (e: any) => {
 				dispatch(logout());
-				router.replace('/auth/login');
+				router.replace('/');
 			},
 		},
 	];
@@ -63,8 +64,11 @@ const Header = ({
 					>
 						<div className='w-12 h-12 duration-500 bg-white/20 hover:bg-white/30 flex justify-center items-center rounded-full cursor-pointer'>
 							{session ? (
-								<img
+								<Image
+									width={200}
+									height={200}
 									src={session.user?.image!}
+									alt={`image de ${user?.names}`}
 									className='object-cover rounded-full w-full h-full'
 								/>
 							) : user ? (

@@ -57,9 +57,15 @@ const Login = () => {
 			locale={fr}
 		>
 			<div
-				className={`w-full h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80 relative text-white/70`}
+				className={`absolute top-0 bottom-0 w-full z-50 flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80  text-white/70`}
 			>
-				<div className='w-full m-2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md'>
+				<div className='w-full m-2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md '>
+					<Link
+						href={'/'}
+						className='absolute top-8 right-8 bg-white/30 hover:bg-white/50 hover:text-black duration-500 cursor-pointer p-1 px-2 rounded-md'
+					>
+						Revenir a l&apos;accueil
+					</Link>
 					<span className='text-white/50'>Goal go</span>
 					<h2 className='text-3xl text-white/70 font-bold'>Connexion</h2>
 					<p className='text-xs text-white/50'>
@@ -112,13 +118,13 @@ const Login = () => {
 						<span className='text-white/40'>ou</span>
 					</Divider>
 
-					<Button
+					{/* <Button
 						className='w-full border-black/60 bg-white/10 text-white'
 						size='large'
 						onClick={handleGoogleLogin}
 					>
 						Se connecter avec Google
-					</Button>
+					</Button> */}
 					<p className='text-sm text-center text-white pb-2 my-6'>
 						vous n&apos;avez pas encore un compte{' '}
 						<Link

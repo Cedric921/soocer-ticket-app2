@@ -5,7 +5,13 @@ const Services = () => {
 	return (
 		<div className='w-full bg-white'>
 			<div className='container mx-auto flex flex-wrap justify-between py-12 '>
-				<div className='w-full md:w-1/3 p-8'>
+				<div
+					className='w-full md:w-1/3 p-8'
+					data-aos='fade-zoom-in'
+					data-aos-easing='ease-in-back'
+					data-aos-delay='300'
+					data-aos-offset='0'
+				>
 					<div className='w-full h-full'>
 						<div className='bg-primary-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaPlaystation className='text-2xl text-primary-700' />
@@ -17,7 +23,13 @@ const Services = () => {
 						</p>
 					</div>
 				</div>
-				<div className='w-full md:w-1/3 p-8'>
+				<div
+					className='w-full md:w-1/3 p-8'
+					data-aos='fade-zoom-in'
+					data-aos-easing='ease-in-back'
+					data-aos-delay='300'
+					data-aos-offset='0'
+				>
 					<div className='w-full h-full'>
 						<div className='bg-pink-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaChair className='text-2xl text-pink-700' />
@@ -29,7 +41,13 @@ const Services = () => {
 						</p>
 					</div>
 				</div>
-				<div className='w-full md:w-1/3 p-8'>
+				<div
+					className='w-full md:w-1/3 p-8'
+					data-aos='fade-zoom-in'
+					data-aos-easing='ease-in-back'
+					data-aos-delay='300'
+					data-aos-offset='0'
+				>
 					<div className='w-full h-full'>
 						<div className='bg-primary-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaPlaystation className='text-2xl text-primary-700' />
