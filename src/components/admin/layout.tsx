@@ -60,19 +60,12 @@ const Layout = ({ children }: ILayout) => {
 					} w-full h-screen max-h-screen flex duration-500`}
 				>
 					<aside
-						className={` bg-slate-100 dark:bg-black/90 dark:text-white shadow-md p-2	${
+						className={` bg-slate-100 dark:bg-black/90 dark:text-white shadow-md 	${
 							onMobile ? 'absolute z-30 h-screen' : 'relative max-w-[15rem] '
-						} ${showAside ? 'min-w-[15rem]  w-1/6 max-w-[300px]' : 'w-0'}`}
+						} ${showAside ? 'min-w-[15rem]  w-1/6 max-w-[300px] p-2' : 'w-0'}`}
 					>
-						{onMobile && (
-							<span
-								className='absolute text-xl top-2 right-2'
-								onClick={() => setShowAside(false)}
-							>
-								<FaRegWindowClose />
-							</span>
-						)}
 						<Asidebar
+							setShowAside={setShowAside}
 							onMobile={onMobile}
 							showAside={showAside}
 							darkMode={isDarkMode}

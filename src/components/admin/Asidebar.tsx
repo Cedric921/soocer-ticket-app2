@@ -7,6 +7,7 @@ import {
 	FaMoon,
 	FaPlayCircle,
 	FaPlaystation,
+	FaRegWindowClose,
 	FaSun,
 	FaUserFriends,
 } from 'react-icons/fa';
@@ -43,9 +44,11 @@ const Asidebar = ({
 	showAside,
 	darkMode,
 	setDarkMode,
+	setShowAside,
 }: {
 	onMobile: boolean;
 	showAside: boolean;
+	setShowAside: React.Dispatch<React.SetStateAction<boolean>>;
 	setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 	darkMode: boolean;
 }) => {
@@ -55,6 +58,14 @@ const Asidebar = ({
 		<>
 			{showAside ? (
 				<div className='relative h-full'>
+					{onMobile && (
+						<span
+							className='absolute text-xl top-2 right-2'
+							onClick={() => setShowAside(false)}
+						>
+							<FaRegWindowClose />
+						</span>
+					)}
 					<div className='p-4 px-2 flex flex-col'>
 						<h2 className='text-3xl font-bold text-primary-700'>
 							soccer-ticket
