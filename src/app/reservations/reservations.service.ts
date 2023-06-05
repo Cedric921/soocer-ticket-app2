@@ -53,7 +53,7 @@ export const getOneReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
 	'book/create',
-	async (data: any, thunkAPI) => {
+	async (data: { gameId: string }, thunkAPI) => {
 		try {
 			const { auth } = thunkAPI.getState() as RootState;
 			const token =
