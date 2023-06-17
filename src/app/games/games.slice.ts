@@ -41,7 +41,7 @@ const gameSlice = createSlice({
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
-				state.message = action.payload as string;
+				state.message = '';
 			})
 			.addCase(createGame.pending, (state) => {
 				state.status.isLoading = true;

@@ -46,7 +46,7 @@ const GameList = ({ max }: { max?: number }) => {
 				</div>
 
 				<div className='w-full flex items-center flex-wrap my-4'>
-					{userGames ? (
+					{userGames && userGames.length > 0 ? (
 						userGames?.map((game: IGame) => (
 							<div
 								key={game.id}
@@ -55,7 +55,7 @@ const GameList = ({ max }: { max?: number }) => {
 								<GameCard game={game} />
 							</div>
 						))
-					) : gameStatus.isLoading ? (
+					) : !gameStatus.isSuccess ? (
 						<>
 							<div className='w-full sm:w-1/2 lg:w-1/3 2xl:w-1/4 p-4'>
 								<GameCardSqueleton />
@@ -73,16 +73,16 @@ const GameList = ({ max }: { max?: number }) => {
 						</div>
 					)}
 				</div>
-				<div className='py-6'>
-					{max ? (
+				{max && gameStatus.isSuccess ? (
+					<div className='py-6'>
 						<Link
 							href={'/user/games'}
 							className=' border-primary-500 rounded-full text-primary-500 bg-primary-500/20 hover:bg-primary-500 hover:text-white duration-500 p-3 px-5'
 						>
 							voir plus
 						</Link>
-					) : null}
-				</div>
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

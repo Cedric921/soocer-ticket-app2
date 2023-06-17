@@ -1,24 +1,63 @@
+import { signup } from '@/app/auth/auth.service';
+import { AppDispatch, RootState } from '@/app/store';
 import { Button, ConfigProvider, Divider, Input } from 'antd';
 import fr from 'antd/locale/fr_FR';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signup = () => {
 	const router = useRouter();
+	const dispatch = useDispatch<AppDispatch>();
+	const { user, status } = useSelector((state: RootState) => state.auth);
 	const [userInput, setUserInput] = React.useState({
 		email: '',
 		password: '',
+		confirm: '',
+		names: '',
 	});
+	const [error, setError] = React.useState('');
 
 	const handleChangeUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+		setError('');
 	};
 	const handleSignup = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log(userInput);
-		router.replace('/admin');
+		if (/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/.test(userInput.email)) {
+			setError('email invalide');
+			return;
+		}
+		if (userInput.password !== userInput.confirm) {
+			setError('les mot de passe doivent correspondre');
+			return;
+		}
+
+		dispatch(
+			signup({
+				email: userInput.email,
+				password: userInput.password,
+				names: userInput.names,
+			})
+		);
 	};
+
+	React.useEffect(() => {
+		if (user) {
+			switch (user.role) {
+				case 'ADMIN':
+					router.replace('/admin');
+					break;
+				case 'USER':
+					router.replace('/');
+					break;
+				default:
+					router.replace('/');
+			}
+		}
+	}, [user, router]);
+
 	return (
 		<ConfigProvider
 			theme={{
@@ -31,9 +70,9 @@ const Signup = () => {
 			locale={fr}
 		>
 			<div
-				className={` absolute top-0 bottom-0 w-full z-50 h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80  text-white/70`}
+				className={` fixed top-0 bottom-0 w-full z-50 h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80  text-white/70`}
 			>
-				<div className='w-1/2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md'>
+				<div className='w-1/2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md overflow-auto'>
 					<Link
 						href={'/'}
 						className='absolute top-8 right-8 bg-white/30 hover:bg-white/50 hover:text-black duration-500 cursor-pointer p-1 px-2 rounded-md'
@@ -49,6 +88,21 @@ const Signup = () => {
 					</p>
 					<form action='' className='pt-8' onSubmit={handleSignup}>
 						<div className='flex flex-col py-2'>
+							<label htmlFor='names' className='text-sm text-slate-300'>
+								Noms
+							</label>
+							<Input
+								className='bg-slate-300'
+								type='texte'
+								name='names'
+								id='names'
+								size='large'
+								placeholder='albert Einstein'
+								value={userInput.names}
+								onChange={handleChangeUserInput}
+							/>
+						</div>
+						<div className='flex flex-col py-2'>
 							<label htmlFor='email' className='text-sm text-slate-300'>
 								email
 							</label>
@@ -58,6 +112,7 @@ const Signup = () => {
 								name='email'
 								id='email'
 								size='large'
+								placeholder='albert@mail.cm'
 								value={userInput.email}
 								onChange={handleChangeUserInput}
 							/>
@@ -72,7 +127,23 @@ const Signup = () => {
 								name='password'
 								id='password'
 								size='large'
+								placeholder='*** *** ***'
 								value={userInput.password}
+								onChange={handleChangeUserInput}
+							/>
+						</div>
+						<div className='flex flex-col py-2'>
+							<label htmlFor='confirm' className='text-sm text-slate-300'>
+								Confirmer le mot de passe
+							</label>
+							<Input
+								className='bg-slate-300'
+								type='password'
+								name='confirm'
+								id='confirm'
+								size='large'
+								value={userInput.confirm}
+								placeholder='*** *** ***'
 								onChange={handleChangeUserInput}
 							/>
 						</div>
@@ -89,6 +160,8 @@ const Signup = () => {
 					<p className='text-sm text-end text-white pb-2 underline'>
 						Mot de passe oublié
 					</p>
+
+					<p className='text-red-300 text-xs'>{error ?? null}</p>
 
 					<Divider className=''>
 						<span className='text-white/40'>ou</span>

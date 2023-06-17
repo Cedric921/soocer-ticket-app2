@@ -41,7 +41,7 @@ const teamSlice = createSlice({
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
-				state.message = action.payload as string;
+				state.message = '';
 			})
 			.addCase(createTeam.pending, (state) => {
 				state.status.isLoading = true;

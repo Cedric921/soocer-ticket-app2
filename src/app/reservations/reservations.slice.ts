@@ -16,7 +16,7 @@ const reservationSlice = createSlice({
 	name: 'reservations',
 	initialState,
 	reducers: {
-		resetStatus: (state) => {
+		resetResStatus: (state) => {
 			state.message = '';
 		},
 		setFromStatic: (state, action) => {
@@ -76,6 +76,6 @@ const reservationSlice = createSlice({
 	},
 });
 
-export const { resetStatus, setFromStatic, selectOneReservation } =
+export const { resetResStatus, setFromStatic, selectOneReservation } =
 	reservationSlice.actions;
 export default reservationSlice.reducer;

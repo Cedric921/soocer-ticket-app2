@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 const GameCard = ({ game }: { game: IGame }) => {
+	const router = useRouter();
 	return (
 		<div
+			onClick={() => router.push(`/user/games/${game.id}`)}
 			data-aos='zoom-in'
 			className='border-0  dark:border-white/20 rounded bg-white dark:bg-black/70 hover:border-black shadow-[0px_0px_15px_0px_#00000024] hover:shadow-[0px_0px_20px_10px_#00000024] dark:hover:bg-white/20 duration-1000 dark:text-white/60  p-4 py-6 relative'
 		>
@@ -29,7 +32,7 @@ const GameCard = ({ game }: { game: IGame }) => {
 			</div>
 			<Link
 				href={`/user/games/${game.id}`}
-				className='absolute top-0 bottom-0 left-0 right-0'
+				className='absolute top-0 bottom-0 left-0 right-0 z-50'
 			></Link>
 		</div>
 	);

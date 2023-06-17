@@ -36,6 +36,13 @@ const Header = ({
 			},
 		},
 		{
+			label: 'Accueil',
+			key: '/home',
+			onClick: (e: any) => {
+				router.replace('/');
+			},
+		},
+		{
 			label: 'Deconnexion',
 			key: '/deconnect',
 			onClick: (e: any) => {

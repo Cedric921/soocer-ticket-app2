@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PageHeader from '@/components/global/PageHeader';
-import { Button, DatePicker, Input, Modal, Select } from 'antd';
+import { Button, DatePicker, Input, InputNumber, Modal, Select } from 'antd';
 import GameCard from '@/components/global/games/GameCard';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +21,7 @@ const Index = () => {
 		teamOneId: '',
 		teamTwoId: '',
 		date: '',
+		places: 100,
 	});
 	const [visibleAddCompet, setVisibleAddCompet] =
 		React.useState<boolean>(false);
@@ -153,6 +154,20 @@ const Index = () => {
 								setGameInput((prev) => ({
 									...prev,
 									date: e?.format('YYYY-MM-DDTHH:mm:ssZ')!,
+								}))
+							}
+						/>
+					</div>
+					<div className='flex flex-col py-2'>
+						<label htmlFor='description' className='text-sm text-black/60'>
+							Nombre des places
+						</label>
+						<Input
+							size='large'
+							onChange={(e) =>
+								setGameInput((prev) => ({
+									...prev,
+									places: +e.target.value,
 								}))
 							}
 						/>

@@ -28,6 +28,10 @@ const ToastManager = () => {
 		(state: RootState) => state.teams
 	);
 
+	const { status: resStatus, message: resMessage } = useSelector(
+		(state: RootState) => state.reservations
+	);
+
 	const messageToast = (status: NoticeType, message: string) => {
 		toast.open({
 			type: status,
@@ -75,6 +79,11 @@ const ToastManager = () => {
 			messageToast('success', teamsMessage);
 	}, [teamsStatus.isSuccess, teamsStatus.isError]);
 
+	React.useEffect(() => {
+		if (resStatus.isError && resMessage) messageToast('error', resMessage);
+		if (resStatus.isSuccess && resMessage) messageToast('success', resMessage);
+	}, [resStatus.isSuccess, resStatus.isError]);
+
 	return (
 		<>
 			{context}
@@ -84,7 +93,8 @@ const ToastManager = () => {
 					usersStatus.isLoading ||
 					competStatus.isLoading ||
 					gamesStatus.isLoading ||
-					teamsStatus.isLoading
+					teamsStatus.isLoading ||
+					resStatus.isLoading
 				}
 			/>
 		</>

@@ -1,23 +1,37 @@
 import { createReservation } from '@/app/reservations/reservations.service';
 import { GAMES } from '@/app/routes';
 import { AppDispatch, RootState } from '@/app/store';
-import { Button } from 'antd';
+import { Button, Modal, message } from 'antd';
 import axios from 'axios';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { message } from 'antd';
 import { FaPlay } from 'react-icons/fa';
+import { resetResStatus } from '@/app/reservations/reservations.slice';
 
 const DetailsGame = ({ game }: { game: IGame }) => {
 	const { user } = useSelector((state: RootState) => state.auth);
-	const { reservations } = useSelector(
+	const { reservations, message, status } = useSelector(
 		(state: RootState) => state.reservations
 	);
 	const dispatch = useDispatch<AppDispatch>();
+	const [open, setOpen] = React.useState(false);
+
+	const handleOpenModal = () => {
+		setOpen(true);
+		setTimeout(() => {
+			setOpen(false);
+			dispatch(resetResStatus());
+		}, 6000);
+	};
 
 	const handleBook = () => {
 		dispatch(createReservation({ gameId: game?.id }));
 	};
+
+	React.useEffect(() => {
+		if (status.isSuccess) handleOpenModal();
+	}, [status.isSuccess]);
+
 	const d = game ? new Date(game?.date).toISOString() : '';
 	return (
 		<div className='w-full h-screen flex items-center justify-center'>
@@ -27,7 +41,7 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 					className='relative  h-full mb-12 overflow-hidden shadow-2xl rounded-3xl'
 				>
 					<div className='absolute flex flex-col md:flex-row gap-1 justify-center  items-start  top-0 left-0 right-0 bottom-0 z-30 bg-black/60 text-white p-12'>
-						<div className='w-full h-full md:w-1/2 p-2 text-center md:text-start bg-white/30 rounded-t-3xl  md:rounded-tr-none md:rounded-l-3xl'>
+						<div className='w-full h-full md:w-1/2 p-4 md:p-5 text-center md:text-start bg-black/80 rounded-t-3xl  md:rounded-tr-none md:rounded-l-3xl'>
 							<span>{game?.TeamOne?.sigle}</span>
 							<h3 className='text-4xl md:text-7xl text-center md:text-start my-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-pink-600 to-pink-600'>
 								{game?.TeamOne?.title}
@@ -35,13 +49,13 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 							<span>de</span>
 							<p className='font-semibold'>{game?.TeamOne?.town}</p>
 						</div>
-						<div className='w-full h-full md:w-1/2 pt-12 md:pt-2 p-2 text-center md:text-end bg-white/30 rounded-b-3xl  md:rounded-bl-none md:rounded-r-3xl'>
-							<span>{game?.TeamOne?.sigle}</span>
+						<div className='w-full h-full md:w-1/2 pt-12 md:pt-2 p-4 md:p-5 text-center md:text-end bg-black/80 rounded-b-3xl  md:rounded-bl-none md:rounded-r-3xl'>
+							<span>{game?.TeamTwo?.sigle}</span>
 							<h3 className='text-4xl md:text-7xl text-center md:text-end my-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-pink-600 to-primary-400'>
-								{game?.TeamOne?.title}
+								{game?.TeamTwo?.title}
 							</h3>
 							<span>de</span>
-							<p className='font-semibold'>{game?.TeamOne?.town}</p>
+							<p className='font-semibold'>{game?.TeamTwo?.town}</p>
 						</div>
 					</div>
 					<video
@@ -66,6 +80,22 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 					) : null}
 				</div>
 			</div>
+			<Modal centered open={open} onCancel={() => setOpen(false)} footer={[]}>
+				<p>Confirmation reservation</p>
+				<p className='text-center mt-4'>
+					Felicitations, vous venez d&apos;effectuer une reservation pour match,
+					verifier votre adresse mail pour voir plus des details
+				</p>
+				<div className='flex flex-col items-center'>
+					<h3 className='text-2xl font-extrabold mt-4'>
+						{game?.TeamOne?.title}
+					</h3>
+					<div className='bg-black/40 text-white rounded-full text-center w-8 h-8 flex items-center justify-center'>
+						vs
+					</div>
+					<h3 className='text-2xl font-extrabold'>{game?.TeamTwo?.title}</h3>
+				</div>
+			</Modal>
 		</div>
 	);
 };

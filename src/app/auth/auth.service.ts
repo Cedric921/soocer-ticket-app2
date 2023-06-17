@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { LOGIN_ROUTE } from '../routes';
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from '../routes';
 
 export const login = createAsyncThunk(
 	'auth/login',
@@ -18,10 +18,12 @@ export const login = createAsyncThunk(
 
 export const signup = createAsyncThunk(
 	'auth/signup',
-	async (data, thunkAPI) => {
+	async (
+		data: { email: string; password: string; names: string },
+		thunkAPI
+	) => {
 		try {
-			console.log(LOGIN_ROUTE, data);
-			const res = await axios.post(LOGIN_ROUTE, data);
+			const res = await axios.post(SIGNUP_ROUTE, data);
 			return res.data;
 		} catch (error: any) {
 			const message =

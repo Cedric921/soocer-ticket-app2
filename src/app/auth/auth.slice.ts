@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from './auth.service';
+import { login, signup } from './auth.service';
 
 let localUser: (IUser & { token: string }) | null = null;
 if (typeof window !== 'undefined') {
@@ -46,6 +46,25 @@ const authSlice = createSlice({
 				localStorage.setItem('soccer-user', JSON.stringify(state.user));
 			})
 			.addCase(login.rejected, (state, action) => {
+				state.status.isLoading = false;
+				state.status.isSuccess = false;
+				state.status.isError = true;
+				state.message = action.payload as string;
+			})
+			.addCase(signup.pending, (state) => {
+				state.status.isLoading = true;
+				state.status.isSuccess = false;
+				state.status.isError = false;
+			})
+			.addCase(signup.fulfilled, (state, action) => {
+				state.status.isLoading = false;
+				state.status.isSuccess = true;
+				state.status.isError = false;
+				state.user = action.payload.data;
+				state.message = 'connecté';
+				localStorage.setItem('soccer-user', JSON.stringify(state.user));
+			})
+			.addCase(signup.rejected, (state, action) => {
 				state.status.isLoading = false;
 				state.status.isSuccess = false;
 				state.status.isError = true;
