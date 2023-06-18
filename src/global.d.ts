@@ -80,6 +80,8 @@ declare interface IReservation {
 	date: string;
 	createdAt: Date;
 	updatedAt: Date;
+	uniqueCode: string
+	place: number;
 	userId: string;
 	gameId: string;
 	Game: IGame;

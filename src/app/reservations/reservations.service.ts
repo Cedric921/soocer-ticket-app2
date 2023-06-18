@@ -28,8 +28,9 @@ export const getReservations = createAsyncThunk(
 );
 
 export const getOneReservation = createAsyncThunk(
-	'books/getAll',
-	async (id, thunkAPI) => {
+	'books/getOne',
+	async (uniqueCode: string, thunkAPI) => {
+		console.log('get one reserv', uniqueCode)
 		try {
 			const { auth } = thunkAPI.getState() as RootState;
 			const token =
@@ -41,7 +42,7 @@ export const getOneReservation = createAsyncThunk(
 					Authorization: `Bearer ${token}`,
 				},
 			};
-			const res = await axios.get(`${RESERVATION_ROUTE}/${id}`, config);
+			const res = await axios.get(`${RESERVATION_ROUTE}/${uniqueCode}`, config);
 			return res.data;
 		} catch (error: any) {
 			const message =

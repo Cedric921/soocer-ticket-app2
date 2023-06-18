@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createReservation, getReservations } from './reservations.service';
+import { createReservation, getOneReservation, getReservations } from './reservations.service';
 
 const initialState: IReservationState = {
 	reservations: [],
@@ -24,13 +24,15 @@ const reservationSlice = createSlice({
 			state.message = action.payload.message;
 		},
 		selectOneReservation: (state, action) => {
+			console.log(action.payload)
 			const element =
 				state.reservations?.filter(
 					(el) =>
-						el.id.includes(action.payload) ||
+						el.uniqueCode.includes(action.payload) ||
 						el.User.names.includes(action.payload) ||
 						el.date.includes(action.payload) ||
-						el.id === action.payload
+						el.id === action.payload ||
+						el.uniqueCode === action.payload
 				)[0] ?? null;
 			state.selected = element;
 		},
@@ -72,7 +74,24 @@ const reservationSlice = createSlice({
 				state.status.isSuccess = false;
 				state.status.isError = true;
 				state.message = action.payload as string;
-			});
+			}).addCase(getOneReservation.pending, (state) => {
+				state.status.isLoading = true;
+				state.status.isSuccess = false;
+				state.status.isError = false;
+			})
+			.addCase(getOneReservation.fulfilled, (state, action) => {
+				state.status.isLoading = false;
+				state.status.isSuccess = true;
+				state.status.isError = false;
+				state.selected = action.payload.data;
+				state.message = action.payload.message;
+			})
+			.addCase(getOneReservation.rejected, (state, action) => {
+				state.status.isLoading = false;
+				state.status.isSuccess = false;
+				state.status.isError = true;
+				state.message = action.payload as string;
+			});;
 	},
 });
 

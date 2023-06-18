@@ -15,7 +15,7 @@ import { getUsers } from '@/app/users/users.service';
 import { getCompets } from '@/app/compet/compets.service';
 import { getTeams } from '@/app/teams/teams.service';
 import { getGames } from '@/app/games/games.service';
-import { getReservations } from '@/app/reservations/reservations.service';
+import { getOneReservation, getReservations } from '@/app/reservations/reservations.service';
 import { selectOneReservation } from '@/app/reservations/reservations.slice';
 
 const Dashboard = () => {
@@ -41,6 +41,12 @@ const Dashboard = () => {
 
 		fetch();
 	}, []);
+
+	React.useEffect(() => {
+		// dispatch(getOneReservation(searchContent))
+		dispatch(selectOneReservation(searchContent))
+
+	}, [searchContent])
 	return (
 		<>
 			<Head>
@@ -93,16 +99,17 @@ const Dashboard = () => {
 										size='large'
 										placeholder='2737477ryrhfh83948'
 										className='dark:bg-white/75 dark:focus:ring-4 ring-black/80'
+
 										onChange={(e) => {
 											setSearchContent(e.target.value);
-											dispatch(selectOneReservation(e.target.value));
+
 										}}
 									/>
 									<Button
 										className='bg-black/70 dark:border dark:border-black/70 text-white w-full my-4'
 										size='large'
 										onClick={() =>
-											dispatch(selectOneReservation(searchContent))
+											dispatch(getOneReservation(searchContent))
 										}
 									>
 										Chercher
@@ -116,8 +123,8 @@ const Dashboard = () => {
 											<span className='bg-black/60 min-w-[20rem] text-white p-1 text-xs rounded'>
 												{selectedReservation
 													? new Date(
-															selectedReservation?.date
-													  )?.toLocaleDateString()
+														selectedReservation?.date
+													)?.toLocaleDateString()
 													: null}
 											</span>
 											<h3 className='text-2xl text-center font-semibold  text-black/80 dark:text-white/80'>
@@ -135,11 +142,14 @@ const Dashboard = () => {
 											<p className='text-center text-xs text-black/50 dark:text-white/50'>
 												{selectedReservation?.Game?.TeamTwo?.town ?? '...'}
 											</p>
+											<p className='text-center my-1'>
+												<span>{selectedReservation?.uniqueCode}</span>
+											</p>
 											<div className='bg-black/70 rounded-b-xl text-white text-center mx-auto absolute bottom-0 left-0 right-0'>
 												<h4 className='text-center pt-2 '>
 													{selectedReservation?.User?.names}
 												</h4>
-												<span className='text-xl font-bold'>253</span>
+												<span className='text-xl font-bold'>{selectedReservation?.place}</span>
 											</div>
 										</>
 									) : (
