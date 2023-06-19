@@ -17,7 +17,7 @@ export default function Home() {
 		<main>
 			<Hero />
 			<Services />
-			<Testimonials />
+			{/* <Testimonials /> */}
 			<GameList max={12} />
 		</main>
 	);

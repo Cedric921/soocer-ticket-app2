@@ -77,7 +77,7 @@ const GameList = ({ max }: { max?: number }) => {
 					<div className='py-6'>
 						<Link
 							href={'/user/games'}
-							className=' border-primary-500 rounded-full text-primary-500 bg-primary-500/20 hover:bg-primary-500 hover:text-white duration-500 p-3 px-5'
+							className=' border-primary-500 rounded-full text-black bg-black/20 hover:bg-primary-500 hover:text-white duration-500 p-3 px-5'
 						>
 							voir plus
 						</Link>
