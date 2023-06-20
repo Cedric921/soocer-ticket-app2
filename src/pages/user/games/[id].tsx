@@ -7,6 +7,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaPlay } from 'react-icons/fa';
 import { resetResStatus } from '@/app/reservations/reservations.slice';
+import { GetServerSideProps } from 'next';
+import Stripe from 'stripe';
+import getStripe from '@/lib/getStripe';
 
 const DetailsGame = ({ game }: { game: IGame }) => {
 	const { user } = useSelector((state: RootState) => state.auth);
@@ -24,8 +27,19 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 		}, 6000);
 	};
 
-	const handleBook = () => {
-		dispatch(createReservation({ gameId: game?.id }));
+	const handleBook = async () => {
+		const stripe = await getStripe();
+
+		const res = await axios.post('/api/stripe', game);
+
+		if (res.status == 500) return;
+
+		const data = res.data;
+
+		stripe.redirectToCheckout({ sessionId: data.id });
+
+		// handleCheckout(game);
+		// dispatch(createReservation({ gameId: game?.id }));
 	};
 
 	React.useEffect(() => {
@@ -123,3 +137,22 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 export default DetailsGame;
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+// 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
+// 		apiVersion: '2022-11-15',
+// 	});
+
+// 	const response = await stripe.prices.list({
+// 		limit: 10,
+// 		expand: ['data.product'],
+// 	});
+
+// 	const prices = response.data.filter((p) => p.active);
+
+// 	return {
+// 		props: {
+// 			prices,
+// 		},
+// 	};
+// };
