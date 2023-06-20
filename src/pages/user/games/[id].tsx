@@ -78,7 +78,11 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 						<source src='/videos/uefa.mp4' type='video/mp4' />
 						Your browser does not support the video tag.
 					</video> */}
-					<img className='absolute z-10 top-0  w-auto min-w-full min-h-full max-w-none' src="/images/champios.webp" alt="" />
+					<img
+						className='absolute z-10 top-0  w-auto min-w-full min-h-full max-w-none'
+						src='/images/champios.webp'
+						alt=''
+					/>
 					<div className='absolute bg-white/30 h-24 w-24 animate-pulse z-30 left-0 right-0 top-0 bottom-0 m-auto  p-4 rounded-full'></div>
 					<div className='absolute bg-white h-16 w-16 flex items-center justify-center z-30  left-0 right-0 top-0 bottom-0 m-auto p-4 rounded-full'>
 						<FaPlay className='text-2xl text-primary-700' />
@@ -117,10 +121,10 @@ export async function getStaticPaths() {
 	try {
 		const res = await axios.get(`${GAMES}`);
 		ids = res.data?.data?.map((el: IGame) => ({ params: { id: el.id } }));
-	} catch (error) { }
+	} catch (error) {}
 	return {
 		paths: ids,
-		fallback: false,
+		fallback: 'blocking',
 	};
 }
 
@@ -129,7 +133,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 	try {
 		const res = await axios.get(`${GAMES}/${params.id}`);
 		game = await res?.data?.data;
-	} catch (error) { }
+	} catch (error) {}
 
 	return { props: { game } };
 }

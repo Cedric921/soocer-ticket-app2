@@ -93,7 +93,7 @@ export async function getStaticPaths() {
 	} catch (error) {}
 	return {
 		paths: ids,
-		fallback: false,
+		fallback: 'blocking',
 	};
 }
 
