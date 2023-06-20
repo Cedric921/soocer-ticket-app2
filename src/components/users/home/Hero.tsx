@@ -1,7 +1,36 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { FaPlay } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
+import { createReservation } from '@/app/reservations/reservations.service';
+import { Modal } from 'antd';
+import { resetResStatus } from '@/app/reservations/reservations.slice';
 
 const Hero = () => {
+	const router = useRouter();
+	const dispatch = useDispatch<AppDispatch>();
+	const [open, setOpen] = React.useState(false);
+	const { query } = router;
+	const { status } = useSelector((state: RootState) => state.reservations);
+
+	const handleOpenModal = () => {
+		setOpen(true);
+		setTimeout(() => {
+			setOpen(false);
+			dispatch(resetResStatus());
+			router.replace('/');
+		}, 6000);
+	};
+
+	React.useEffect(() => {
+		if (query.game)
+			dispatch(createReservation({ gameId: query.game as string }));
+	}, [query.game]);
+
+	React.useEffect(() => {
+		if (status.isSuccess === true || query.game) handleOpenModal();
+	}, [status.isSuccess]);
 	return (
 		<div className=' container mx-auto w-full h-screen p-6 md:p-12 pt-24'>
 			<div
@@ -32,6 +61,21 @@ const Hero = () => {
 					<FaPlay className='text-2xl text-primary-700' />
 				</div>
 			</div>
+			<Modal
+				centered
+				open={open}
+				onCancel={() => {
+					setOpen(false);
+					router.replace('/');
+				}}
+				footer={[]}
+			>
+				<p>Confirmation reservation</p>
+				<p className='text-center mt-4'>
+					Felicitations, vous venez d&apos;effectuer une reservation pour match,
+					verifier votre adresse mail pour voir plus des details
+				</p>
+			</Modal>
 		</div>
 	);
 };

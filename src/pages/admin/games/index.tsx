@@ -22,6 +22,7 @@ const Index = () => {
 		teamTwoId: '',
 		date: '',
 		places: 100,
+		price: 10,
 	});
 	const [visibleAddCompet, setVisibleAddCompet] =
 		React.useState<boolean>(false);
