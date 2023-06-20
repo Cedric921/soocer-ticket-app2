@@ -59,7 +59,7 @@ const Login = () => {
 			<div
 				className={`fixed top-0 bottom-0 w-full z-50 flex justify-center items-center bg-[url('/images/wcup.webp')] bg-black/80  text-white/70`}
 			>
-				<div className='w-full m-2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md '>
+				<div className='w-full m-2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-black/50 backdrop-blur-md rounded-md '>
 					<Link
 						href={'/'}
 						className='absolute top-8 right-8 bg-white/30 hover:bg-white/50 hover:text-black duration-500 cursor-pointer p-1 px-2 rounded-md'
@@ -129,7 +129,7 @@ const Login = () => {
 						vous n&apos;avez pas encore un compte{' '}
 						<Link
 							href='/auth/signup'
-							className='text-black/80 hover:text-black/70'
+							className='text-white/70 hover:text-black/70'
 						>
 							cliquer ici pour le créer
 						</Link>

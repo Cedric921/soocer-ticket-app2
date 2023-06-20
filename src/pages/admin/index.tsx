@@ -15,7 +15,10 @@ import { getUsers } from '@/app/users/users.service';
 import { getCompets } from '@/app/compet/compets.service';
 import { getTeams } from '@/app/teams/teams.service';
 import { getGames } from '@/app/games/games.service';
-import { getOneReservation, getReservations } from '@/app/reservations/reservations.service';
+import {
+	getOneReservation,
+	getReservations,
+} from '@/app/reservations/reservations.service';
 import { selectOneReservation } from '@/app/reservations/reservations.slice';
 
 const Dashboard = () => {
@@ -44,9 +47,8 @@ const Dashboard = () => {
 
 	React.useEffect(() => {
 		// dispatch(getOneReservation(searchContent))
-		dispatch(selectOneReservation(searchContent))
-
-	}, [searchContent])
+		dispatch(selectOneReservation(searchContent));
+	}, [searchContent]);
 	return (
 		<>
 			<Head>
@@ -83,7 +85,7 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<div className='flex flex-wrap-reverse p-4'>
-				<div className='w-full lg:w-2/3 py-2 lg:pr-2'>
+				<div className='w-full lg:w-full py-2 lg:pr-2'>
 					<div className='h-full bg-white dark:bg-white/20 rounded-xl border-2 dark:border-black/50 dark:text-white/80 duration-1000 p-1'>
 						<div className='flex justify-between flex-wrap h-full'>
 							<div className='w-full md:w-1/2 md:h-full p-4'>
@@ -99,18 +101,14 @@ const Dashboard = () => {
 										size='large'
 										placeholder='2737477ryrhfh83948'
 										className='dark:bg-white/75 dark:focus:ring-4 ring-black/80'
-
 										onChange={(e) => {
 											setSearchContent(e.target.value);
-
 										}}
 									/>
 									<Button
 										className='bg-black/70 dark:border dark:border-black/70 text-white w-full my-4'
 										size='large'
-										onClick={() =>
-											dispatch(getOneReservation(searchContent))
-										}
+										onClick={() => dispatch(getOneReservation(searchContent))}
 									>
 										Chercher
 									</Button>
@@ -123,8 +121,8 @@ const Dashboard = () => {
 											<span className='bg-black/60 min-w-[20rem] text-white p-1 text-xs rounded'>
 												{selectedReservation
 													? new Date(
-														selectedReservation?.date
-													)?.toLocaleDateString()
+															selectedReservation?.date
+													  )?.toLocaleDateString()
 													: null}
 											</span>
 											<h3 className='text-2xl text-center font-semibold  text-black/80 dark:text-white/80'>
@@ -149,7 +147,9 @@ const Dashboard = () => {
 												<h4 className='text-center pt-2 '>
 													{selectedReservation?.User?.names}
 												</h4>
-												<span className='text-xl font-bold'>{selectedReservation?.place}</span>
+												<span className='text-xl font-bold'>
+													{selectedReservation?.place}
+												</span>
 											</div>
 										</>
 									) : (
@@ -164,7 +164,7 @@ const Dashboard = () => {
 						</div>
 					</div>
 				</div>
-				<div className='w-full lg:w-1/3 py-2 lg:pl-2'>
+				{/* <div className='w-full lg:w-1/3 py-2 lg:pl-2'>
 					<div className='bg-black/60 hover:bg-black duration-1000 text-white dark:text-white/80 rounded-xl p-6'>
 						<h1 className='text-5xl md:text-4xl font-bold'>
 							Le moyen le plus facile de suivre les reservations des rencontres
@@ -175,7 +175,7 @@ const Dashboard = () => {
 						</p>
 						<Button className='text-white'>Nouvelle rencontre</Button>
 					</div>
-				</div>
+				</div> */}
 			</div>
 			<div className='my-4 md:my-8'>
 				<h3 className='text-xl font-semibold px-4 dark:text-white'>

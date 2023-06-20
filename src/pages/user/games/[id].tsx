@@ -39,61 +39,27 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 		stripe.redirectToCheckout({ sessionId: data.id });
 	};
 
-	React.useEffect(() => {
-		if (status.isSuccess) handleOpenModal();
-	}, [status.isSuccess]);
-
 	const d = game ? new Date(game?.date).toISOString() : '';
 	return (
-		<div className='w-full h-screen flex items-center justify-center'>
-			<div className=' container mx-auto w-full h-[80vh] p-6 md:p-12 pt-24'>
-				<div
-					data-aos='zoom-in'
-					className='relative  h-full mb-12 overflow-hidden shadow-2xl rounded-3xl'
-				>
-					<div className='absolute flex flex-col md:flex-row gap-1 justify-center  items-start  top-0 left-0 right-0 bottom-0 z-30 bg-black/60 text-white p-12'>
-						<div className='w-full h-full md:w-1/2 p-4 md:p-5 text-center md:text-start bg-black/80 rounded-t-3xl  md:rounded-tr-none md:rounded-l-3xl'>
-							<span>{game?.TeamOne?.sigle}</span>
-							<h3 className='text-4xl md:text-4xl text-center md:text-start my-2 font-extrabold text-transparent bg-clip-text bg-white from-primary-400 via-pink-600 to-pink-600'>
-								{game?.TeamOne?.title}
-							</h3>
-							<span>de</span>
-							<p className='font-semibold'>{game?.TeamOne?.town}</p>
-						</div>
-						<div className='w-full h-full md:w-1/2 pt-12 md:pt-2 p-4 md:p-5 text-center md:text-end bg-black/80 rounded-b-3xl  md:rounded-bl-none md:rounded-r-3xl'>
-							<span>{game?.TeamTwo?.sigle}</span>
-							<h3 className='text-4xl md:text-4xl text-center md:text-end my-2 font-extrabold text-transparent bg-clip-text bg-white from-pink-600 via-pink-600 to-primary-400'>
-								{game?.TeamTwo?.title}
-							</h3>
-							<span>de</span>
-							<p className='font-semibold'>{game?.TeamTwo?.town}</p>
-						</div>
+		<>
+			<div className='min-h-screen flex items-center flex-col justify-center gap-4'>
+				<Button className='text-white' onClick={handleBook}>
+					Reserver à {game.price} $
+				</Button>
+				<div className='w-full relative flex items-center justify-center gap-2'>
+					<div className=' p-8 bg-black/50 text-white w-1/3 shadow-2xl rounded-md'>
+						<span>{game?.TeamOne?.sigle}</span>
+						<h3 className='text-4xl font-bold'>{game?.TeamOne?.title}</h3>
+						<span>{game?.TeamOne?.town}</span>
 					</div>
-					{/* <video
-						autoPlay
-						loop
-						muted
-						className='absolute z-10 top-0  w-auto min-w-full min-h-full max-w-none'
-					>
-						<source src='/videos/uefa.mp4' type='video/mp4' />
-						Your browser does not support the video tag.
-					</video> */}
-					<img
-						className='absolute z-10 top-0  w-auto min-w-full min-h-full max-w-none'
-						src='/images/champios.webp'
-						alt=''
-					/>
-					<div className='absolute bg-white/30 h-24 w-24 animate-pulse z-30 left-0 right-0 top-0 bottom-0 m-auto  p-4 rounded-full'></div>
-					<div className='absolute bg-white h-16 w-16 flex items-center justify-center z-30  left-0 right-0 top-0 bottom-0 m-auto p-4 rounded-full'>
-						<FaPlay className='text-2xl text-primary-700' />
+					<div className='absolute bg-white p-6 rounded-full w-14 h-14 flex justify-center items-center'>
+						<span className='text-2xl font-bold'>vs</span>
 					</div>
-				</div>
-				<div className='flex justify-center'>
-					{user ? (
-						<Button size='large' onClick={handleBook} className='text-white'>
-							Reserver une place
-						</Button>
-					) : null}
+					<div className=' p-8 bg-black/50 text-white w-1/3 text-end shadow-2xl rounded-md'>
+						<span>{game?.TeamTwo?.sigle}</span>
+						<h3 className='text-4xl font-bold'>{game?.TeamTwo?.title}</h3>
+						<span>{game?.TeamTwo?.town}</span>
+					</div>
 				</div>
 			</div>
 			<Modal centered open={open} onCancel={() => setOpen(false)} footer={[]}>
@@ -112,7 +78,7 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 					<h3 className='text-2xl font-extrabold'>{game?.TeamTwo?.title}</h3>
 				</div>
 			</Modal>
-		</div>
+		</>
 	);
 };
 

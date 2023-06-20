@@ -161,6 +161,21 @@ const Index = () => {
 					</div>
 					<div className='flex flex-col py-2'>
 						<label htmlFor='description' className='text-sm text-black/60'>
+							Prix
+						</label>
+						<Input
+							size='large'
+							onChange={(e) =>
+								setGameInput((prev) => ({
+									...prev,
+									price: +e.target.value,
+								}))
+							}
+						/>
+					</div>
+
+					<div className='flex flex-col py-2'>
+						<label htmlFor='description' className='text-sm text-black/60'>
 							Nombre des places
 						</label>
 						<Input
