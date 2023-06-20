@@ -68,19 +68,18 @@ const Asidebar = ({
 					)}
 					<div className='p-4 px-2 flex flex-col'>
 						<h2 className='text-3xl font-bold text-primary-700'>
-							soccer-ticket
+							Vente Billets Admin
 						</h2>
-						<span>gooooli</span>
+						<span>coolceda</span>
 					</div>
 					<div className='my-4 '>
 						{links.map((link, i) => (
 							<Link key={i} href={link.link}>
 								<div
-									className={`flex gap-2 p-2 items-center rounded duration-1000 text-gray-700 dark:text-white/80 hover:text-white hover:bg-black/60 dark:hover:bg-white/20 ${
-										checkActiveRoute(router.pathname, link.link)
-											? ` bg-white border  dark:bg-black`
-											: null
-									}`}
+									className={`flex gap-2 p-2 items-center rounded duration-1000 text-gray-700 dark:text-white/80 hover:text-white hover:bg-black/60 dark:hover:bg-white/20 ${checkActiveRoute(router.pathname, link.link)
+										? ` bg-white border  dark:bg-black`
+										: null
+										}`}
 								>
 									<span className='text-xl '>{link.icon}</span>
 									{link.label}
@@ -89,13 +88,13 @@ const Asidebar = ({
 						))}
 					</div>
 					<div
-						className='absolute bottom-2 bg-black/50 dark:bg-white/80  text-white dark:text-black/70  p-2 px-4 w-full rounded-md cursor-pointer'
-						onClick={() => {
-							setDarkMode(!darkMode);
-							localStorage.setItem('theme', JSON.stringify(!darkMode));
-						}}
+					// className='absolute bottom-2 bg-black/50 dark:bg-white/80  text-white dark:text-black/70  p-2 px-4 w-full rounded-md cursor-pointer'
+					// onClick={() => {
+					// 	setDarkMode(!darkMode);
+					// 	localStorage.setItem('theme', JSON.stringify(!darkMode));
+					// }}
 					>
-						{darkMode ? (
+						{/* {darkMode ? (
 							<div className='flex items-center gap-2 '>
 								<FaSun /> Mode Claire
 							</div>
@@ -103,7 +102,7 @@ const Asidebar = ({
 							<div className='flex items-center gap-2'>
 								<FaMoon /> Mode Sombre
 							</div>
-						)}
+						)} */}
 					</div>
 				</div>
 			) : null}

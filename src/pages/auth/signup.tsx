@@ -70,7 +70,7 @@ const Signup = () => {
 			locale={fr}
 		>
 			<div
-				className={` fixed top-0 bottom-0 w-full z-50 h-screen flex justify-center items-center bg-[url('/images/champios.webp')] bg-black/80  text-white/70`}
+				className={` fixed top-0 bottom-0 w-full z-50 h-screen flex justify-center items-center bg-[url('/images/wcup.webp')] bg-black/80  text-white/70`}
 			>
 				<div className='w-1/2 md:w-2/5 2xl:w-1/4 p-4 md:p-8 bg-white/30 backdrop-blur-md rounded-md overflow-auto'>
 					<Link

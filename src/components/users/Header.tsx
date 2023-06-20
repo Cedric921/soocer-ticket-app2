@@ -13,9 +13,9 @@ const Header = () => {
 			<nav className='container mx-auto flex justify-between items-center'>
 				<Link
 					href={'/'}
-					className='font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-pink-400 to-white'
+					className='font-extrabold text-transparent text-3xl bg-clip-text bg-white from-pink-400 to-white'
 				>
-					Soccer ticket
+					Vente Billets
 				</Link>
 				{!user ? (
 					<Link href={'/auth/login'}>login</Link>

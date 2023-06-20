@@ -13,7 +13,7 @@ const Services = () => {
 					data-aos-offset='0'
 				>
 					<div className='w-full h-full'>
-						<div className='bg-primary-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
+						<div className='bg-black/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaPlaystation className='text-2xl text-primary-700' />
 						</div>
 						<h4 className='font-semibold my-4'>Programes des rencontres</h4>
@@ -31,7 +31,7 @@ const Services = () => {
 					data-aos-offset='0'
 				>
 					<div className='w-full h-full'>
-						<div className='bg-pink-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
+						<div className='bg-black/20  p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaChair className='text-2xl text-pink-700' />
 						</div>
 						<h4 className='font-semibold my-4'>Reservation des places</h4>
@@ -49,7 +49,7 @@ const Services = () => {
 					data-aos-offset='0'
 				>
 					<div className='w-full h-full'>
-						<div className='bg-primary-700/20 p-4 h-16 w-16 rounded-full flex items-center justify-center'>
+						<div className='bg-black/20  p-4 h-16 w-16 rounded-full flex items-center justify-center'>
 							<FaPlaystation className='text-2xl text-primary-700' />
 						</div>
 						<h4 className='font-semibold my-4'>Programes des rencontres</h4>

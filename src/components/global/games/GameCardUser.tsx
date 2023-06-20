@@ -26,7 +26,7 @@ const GameCard = ({ game }: { game: IGame }) => {
 				{game.TeamTwo?.town}
 			</p>
 			<div className='flex items-center justify-center p-4'>
-				<span className='bg-primary-500 dark:bg-white/40 text-white p-1 text-xs rounded mx-auto'>
+				<span className='bg-black/40 dark:bg-white/40 text-white p-1 text-xs rounded mx-auto'>
 					{new Date(game.date).toUTCString()}
 				</span>
 			</div>
