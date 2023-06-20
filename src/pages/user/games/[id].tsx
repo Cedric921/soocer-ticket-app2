@@ -43,7 +43,7 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 					<div className='absolute flex flex-col md:flex-row gap-1 justify-center  items-start  top-0 left-0 right-0 bottom-0 z-30 bg-black/60 text-white p-12'>
 						<div className='w-full h-full md:w-1/2 p-4 md:p-5 text-center md:text-start bg-black/80 rounded-t-3xl  md:rounded-tr-none md:rounded-l-3xl'>
 							<span>{game?.TeamOne?.sigle}</span>
-							<h3 className='text-4xl md:text-7xl text-center md:text-start my-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-pink-600 to-pink-600'>
+							<h3 className='text-4xl md:text-4xl text-center md:text-start my-2 font-extrabold text-transparent bg-clip-text bg-white from-primary-400 via-pink-600 to-pink-600'>
 								{game?.TeamOne?.title}
 							</h3>
 							<span>de</span>
@@ -51,14 +51,14 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 						</div>
 						<div className='w-full h-full md:w-1/2 pt-12 md:pt-2 p-4 md:p-5 text-center md:text-end bg-black/80 rounded-b-3xl  md:rounded-bl-none md:rounded-r-3xl'>
 							<span>{game?.TeamTwo?.sigle}</span>
-							<h3 className='text-4xl md:text-7xl text-center md:text-end my-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-pink-600 to-primary-400'>
+							<h3 className='text-4xl md:text-4xl text-center md:text-end my-2 font-extrabold text-transparent bg-clip-text bg-white from-pink-600 via-pink-600 to-primary-400'>
 								{game?.TeamTwo?.title}
 							</h3>
 							<span>de</span>
 							<p className='font-semibold'>{game?.TeamTwo?.town}</p>
 						</div>
 					</div>
-					<video
+					{/* <video
 						autoPlay
 						loop
 						muted
@@ -66,7 +66,8 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 					>
 						<source src='/videos/uefa.mp4' type='video/mp4' />
 						Your browser does not support the video tag.
-					</video>
+					</video> */}
+					<img className='absolute z-10 top-0  w-auto min-w-full min-h-full max-w-none' src="/images/champios.webp" alt="" />
 					<div className='absolute bg-white/30 h-24 w-24 animate-pulse z-30 left-0 right-0 top-0 bottom-0 m-auto  p-4 rounded-full'></div>
 					<div className='absolute bg-white h-16 w-16 flex items-center justify-center z-30  left-0 right-0 top-0 bottom-0 m-auto p-4 rounded-full'>
 						<FaPlay className='text-2xl text-primary-700' />
@@ -105,7 +106,7 @@ export async function getStaticPaths() {
 	try {
 		const res = await axios.get(`${GAMES}`);
 		ids = res.data?.data?.map((el: IGame) => ({ params: { id: el.id } }));
-	} catch (error) {}
+	} catch (error) { }
 	return {
 		paths: ids,
 		fallback: false,
@@ -117,7 +118,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 	try {
 		const res = await axios.get(`${GAMES}/${params.id}`);
 		game = await res?.data?.data;
-	} catch (error) {}
+	} catch (error) { }
 
 	return { props: { game } };
 }
