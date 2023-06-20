@@ -32,7 +32,7 @@ export default async function handler(req: any, res: any) {
 				mode: 'payment',
 				payment_method_types: ['card'],
 				billing_address_collection: 'auto',
-				success_url: `${req.headers.origin}/?success=true`,
+				success_url: `${req.headers.origin}/?game=${game.id}`,
 				cancel_url: `${req.headers.origin}/?canceled=true`,
 			};
 			// @ts-ignore

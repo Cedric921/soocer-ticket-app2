@@ -29,24 +29,27 @@ const Hero = () => {
 	}, [query.game]);
 
 	React.useEffect(() => {
-		if (status.isSuccess === true || query.game) handleOpenModal();
+		if (status.isSuccess === true || query?.game?.length! > 1)
+			handleOpenModal();
 	}, [status.isSuccess]);
 	return (
-		<div className=' container mx-auto w-full h-screen p-6 md:p-12 pt-24'>
-			<div
-				data-aos='zoom-in'
-				className='relative  h-full mb-12 overflow-hidden shadow-2xl rounded-3xl'
-			>
-				<div className='absolute flex flex-col justify-center md:justify-center items-center  top-0 left-0 right-0 bottom-0 z-30 bg-white/20 text-white p-12'>
-					{/* <span className='bg-primary-600 p-1 px-6 rounded-full '>Match</span> */}
-
-					<h1 className='text-5xl md:text-8xl my-2 font-extrabold text-transparent bg-clip-text bg-white from-primary-400 via-pink-600 to-pink-600'>
-						Les meilleurs  moments du <br />  football
+		<div className=' container mx-auto w-full h-screen p-6 md:p-12 pt-28'>
+			<div className='relative  h-full mb-12 overflow-hidden  rounded-3xl flex items-center'>
+				<div className='w-1/2 p-4 text-white'>
+					<span className='text-2xl'>
+						Venez vivre le moments de folie avec{' '}
+					</span>
+					<h1 className='text-white text-6xl md:text-7xl font-bold'>
+						les rencontres du football
 					</h1>
-
 				</div>
-
-
+				<div className='w-1/2'>
+					<img
+						src='images/champios.webp'
+						alt=''
+						className='object-cover rounded shadow-2xl'
+					/>
+				</div>
 			</div>
 			<Modal
 				centered
