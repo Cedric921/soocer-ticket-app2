@@ -37,9 +37,6 @@ const DetailsGame = ({ game }: { game: IGame }) => {
 		const data = res.data;
 
 		stripe.redirectToCheckout({ sessionId: data.id });
-
-		// handleCheckout(game);
-		// dispatch(createReservation({ gameId: game?.id }));
 	};
 
 	React.useEffect(() => {
@@ -138,22 +135,3 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 export default DetailsGame;
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-// 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
-// 		apiVersion: '2022-11-15',
-// 	});
-
-// 	const response = await stripe.prices.list({
-// 		limit: 10,
-// 		expand: ['data.product'],
-// 	});
-
-// 	const prices = response.data.filter((p) => p.active);
-
-// 	return {
-// 		props: {
-// 			prices,
-// 		},
-// 	};
-// };
