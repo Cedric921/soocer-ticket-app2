@@ -60,6 +60,7 @@ declare interface ITeamState {
 declare interface IGame {
 	id: string;
 	date: Date;
+	price: number;
 	createdAt: Date;
 	updatedAt: Date;
 	teamOneId: string;
@@ -80,7 +81,7 @@ declare interface IReservation {
 	date: string;
 	createdAt: Date;
 	updatedAt: Date;
-	uniqueCode: string
+	uniqueCode: string;
 	place: number;
 	userId: string;
 	gameId: string;
